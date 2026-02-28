@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba15vvlnoni0x"]
+
+[ext_resource type="Theme" uid="uid://yv3yut1q83so" path="res://visual/theme.tres" id="1_jgpqq"]
+[ext_resource type="Shader" uid="uid://d06n37hrvmfhc" path="res://visual/burn.gdshader" id="2_pud2f"]
+[ext_resource type="Texture2D" uid="uid://b5gw3fp0cmuu5" path="res://visual/voronoi.tres" id="3_3fck2"]
+[ext_resource type="Script" uid="uid://deyhx6rabdeut" path="res://visual/burn_popup.gd" id="3_dvaqn"]
+[ext_resource type="Texture2D" uid="uid://4lmnqmedb36j" path="res://visual/new_noise_texture_2d.tres" id="3_jley0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvaqn"]
+shader = ExtResource("2_pud2f")
+shader_parameter/dissolve_texture = ExtResource("3_jley0")
+shader_parameter/voronoi_texture = ExtResource("3_3fck2")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.0
+shader_parameter/ash_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/fire_edge_color = Color(3.236, 1.499, 0.361, 1)
+shader_parameter/fire_edge_strength = 10.0
+shader_parameter/ash_edge_strength = 100.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/noise_speed = 0.125
+shader_parameter/noise_scale = 1.0
+shader_parameter/crack_scale_x = 4.0
+shader_parameter/crack_scale_y = 2.0
+
+[node name="BurnPopup" type="Node2D"]
+texture_filter = 1
+script = ExtResource("3_dvaqn")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_dvaqn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(300, 150)
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_jgpqq")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 30
+text = "$value"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bx46kmbka63tj"]
+
+[ext_resource type="Texture2D" uid="uid://26k77euhqe5c" path="res://prototype/unassigned.png" id="1_gwrgs"]
+[ext_resource type="Script" uid="uid://clrpftlih6oky" path="res://cell.gd" id="2_2yjhv"]
+
+[node name="Cell" type="Sprite2D" unique_id=1075996825]
+texture_filter = 1
+texture = ExtResource("1_gwrgs")
+script = ExtResource("2_2yjhv")
+
+[node name="Label" type="Label" parent="." unique_id=1012254810]
+modulate = Color(0, 0, 0, 1)
+offset_left = -7.0
+offset_top = -17.0
+offset_right = 7.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 24

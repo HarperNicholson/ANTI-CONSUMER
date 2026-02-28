@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsjocqtmc3e85"]
+
+[ext_resource type="Script" uid="uid://c4s8u3cqbl2f8" path="res://map.gd" id="1_37kl0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+position = Vector2(32, 32)
+script = ExtResource("1_37kl0")
+metadata/_edit_lock_ = true

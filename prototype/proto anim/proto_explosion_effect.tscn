@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bihm0msp2730u"]
+
+[ext_resource type="Texture2D" uid="uid://26k77euhqe5c" path="res://prototype/unassigned.png" id="1_3uvt5"]
+[ext_resource type="Texture2D" uid="uid://56mm7kn2oquu" path="res://prototype/advert.png" id="1_ego6n"]
+[ext_resource type="Texture2D" uid="uid://bk8nsm13tlen3" path="res://prototype/alley.png" id="3_iw6c6"]
+[ext_resource type="Texture2D" uid="uid://2kbmd0cnawfv" path="res://prototype/derelict.png" id="4_rghyr"]
+[ext_resource type="Script" uid="uid://dvi6amimac1ks" path="res://animated_effect.gd" id="5_c82ha"]
+[ext_resource type="Texture2D" uid="uid://bs0jqs7y5feyu" path="res://prototype/garden.png" id="5_vmk58"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_juovv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3uvt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ego6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iw6c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rghyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vmk58")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="ProtoExplosionEffect" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_juovv")
+autoplay = "default"
+script = ExtResource("5_c82ha")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dsjocqtmc3e85"]
+
+[ext_resource type="Script" uid="uid://budn0svtmixj7" path="res://game.gd" id="1_8uh7m"]
+[ext_resource type="Script" uid="uid://c4s8u3cqbl2f8" path="res://map.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://dd38t36n4xs0f" path="res://bombs.gd" id="3_6uqi0"]
+[ext_resource type="Script" uid="uid://cmpcje0hjyuiv" path="res://effects.gd" id="4_g14j6"]
+[ext_resource type="Texture2D" uid="uid://26k77euhqe5c" path="res://prototype/unassigned.png" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://db8sc1v3j7sjj" path="res://timer.gd" id="4_ykrsh"]
+[ext_resource type="Texture2D" uid="uid://bi4ltin761ryn" path="res://prototype/special.png" id="7_vbegm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ykrsh"]
+
+[node name="Game" type="Node2D" unique_id=631375042]
+script = ExtResource("1_8uh7m")
+metadata/_edit_lock_ = true
+
+[node name="Map" type="Node2D" parent="." unique_id=199680521]
+position = Vector2(32, 32)
+script = ExtResource("1_37kl0")
+metadata/_edit_lock_ = true
+
+[node name="Bombs" type="Node2D" parent="." unique_id=1416678443]
+script = ExtResource("3_6uqi0")
+metadata/_edit_lock_ = true
+
+[node name="Effects" type="Node2D" parent="." unique_id=681614193]
+script = ExtResource("4_g14j6")
+metadata/_edit_lock_ = true
+
+[node name="BombTick" type="Timer" parent="." unique_id=2140523161]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=573624975]
+position = Vector2(384, 400)
+metadata/_edit_lock_ = true
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=1199363050]
+
+[node name="Label" type="Label" parent="Interface" unique_id=471032114]
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 155.0
+offset_bottom = 77.0
+text = "TIME: 0:00:00"
+script = ExtResource("4_ykrsh")
+
+[node name="Bombs" type="Label" parent="Interface" unique_id=1692720004]
+offset_left = 34.0
+offset_top = 90.0
+offset_right = 113.0
+offset_bottom = 113.0
+text = "BOMBS: "
+
+[node name="BombSelection" type="HBoxContainer" parent="Interface" unique_id=399740338]
+offset_left = 32.0
+offset_top = 146.0
+offset_right = 232.0
+offset_bottom = 210.0
+
+[node name="BombButton1" type="TextureButton" parent="Interface/BombSelection" unique_id=175942348]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_ppyta")
+
+[node name="BombButton2" type="TextureButton" parent="Interface/BombSelection" unique_id=216770392]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_ppyta")
+
+[node name="BombButton3" type="TextureButton" parent="Interface/BombSelection" unique_id=1388681549]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_ppyta")
+
+[node name="Highlight" type="Sprite2D" parent="Interface/BombSelection" unique_id=1777649301]
+visible = false
+z_index = -1
+position = Vector2(32, 32)
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_ykrsh")
+offset = Vector2(0.5, 0.5)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Interface" unique_id=1133065826]
+offset_left = 29.0
+offset_top = 255.0
+offset_right = 262.0
+offset_bottom = 496.0
+text = "~~~~~~~~~~~~~~~~~
+
+THIS IS THE DESCRIPT OF BOMBS
+
+
+
+~~~~~~~~~~~~~~~~~"
+
+[node name="GrenadeButton1" type="TextureButton" parent="Interface" unique_id=925188824]
+offset_left = 18.0
+offset_top = 546.0
+offset_right = 82.0
+offset_bottom = 610.0
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+
+[node name="GrenadeButton2" type="TextureButton" parent="Interface" unique_id=879734103]
+offset_left = 96.0
+offset_top = 546.0
+offset_right = 160.0
+offset_bottom = 610.0
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+
+[node name="GrenadeButton3" type="TextureButton" parent="Interface" unique_id=1400787394]
+offset_left = 176.0
+offset_top = 546.0
+offset_right = 240.0
+offset_bottom = 610.0
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+
+[node name="MetrocityLabel" type="Label" parent="Interface" unique_id=1563093145]
+offset_left = 992.0
+offset_top = 12.0
+offset_right = 1032.0
+offset_bottom = 35.0
+theme_override_constants/outline_size = 8
+
+[connection signal="timeout" from="BombTick" to="Bombs" method="process_chain_reaction"]
+[connection signal="toggled" from="Interface/GrenadeButton1" to="." method="_on_ignite_button_toggled"]
+[connection signal="toggled" from="Interface/GrenadeButton2" to="." method="_on_ignite_button_toggled"]
+[connection signal="toggled" from="Interface/GrenadeButton3" to="." method="_on_ignite_button_toggled"]
