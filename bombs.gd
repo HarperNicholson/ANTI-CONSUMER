@@ -7,8 +7,6 @@ extends Node2D
 
 var reaction_started = false
 
-var placed_bombs: Array = []
-
 func evacuate_cell(evac_cell : Vector2i):
 	print("EVAC CELL: " + str(evac_cell))
 
@@ -16,24 +14,12 @@ func damage_cell(dmg_cell : Vector2i):
 	print("DMG CELL: " + str(dmg_cell))
 
 func place_bomb(bomb_type: String, bomb_coordinate: Vector2i, rots: int = 0):
-	var bomb = {
-		#"shape_data": 
-		#"type" as just "stink", "grenade", "threat", "standard", "fuse", "motion_impact" etc
-		"type": bomb_type,
-		"coordinate": bomb_coordinate,
-		"rotation": rots % 4,
-		"state": null,  # could be "idle", "ignited", "exploding", 
-		#----these others would be redundant because they are all essentially "exploding" right? 
-		#their effect can be additive to the world instead of remaining "alive", 
-		#in the case of stinkbomb it can summon a cloud
-		#stinky", or maybe moving or something for the weirder ones like airplane and carbomb
-		"sprite": null
-	}
+	var bomb
 	
 	#--- cast the above to the instantiated bomb class
 	
 	
-	#weird and placeholder but currently functional
+	#replace bomb[] with bomb.type etc
 	if bomb["type"] == "GRENADE":
 		bomb["state"] = "ignited"
 	else: 
@@ -59,7 +45,7 @@ func place_bomb(bomb_type: String, bomb_coordinate: Vector2i, rots: int = 0):
 	
 	#
 	
-	placed_bombs.append(bomb) #is placed_bombs necessary if instantiated bombs are child of $Bombs (self)?
+	#is placed_bombs necessary if instantiated bombs are child of $Bombs (self)?
 	#answer: no. GET RID! now that i have actual bomb class
 	
 	if reaction_started == false and bomb["type"] == "GRENADE":
@@ -72,7 +58,7 @@ func process_chain_reaction(): #this runs every time BombTick runs out
 	
 	var new_ignitions: Array = []
 	var to_remove: Array = []
-	for bomb in placed_bombs:
+	for bomb in $Bombs:
 		if bomb["state"] == "ignited": #then we will explode
 			bomb["state"] = "exploding"
 			var affected_cells = get_affected_cells(bomb)
@@ -92,7 +78,7 @@ func process_chain_reaction(): #this runs every time BombTick runs out
 				#it's actually not causing a chain reaction currently.
 				print(str(affected_cell) + "affected cell")
 				
-			for other in placed_bombs: # ignite or trigger other bombs
+			for other in $Bombs: # ignite or trigger other bombs
 				if other["state"] == "idle" and other["coordinate"] in affected_cells:
 					if other["type"] == "FUSE":
 						other["state"] = "ignited"
