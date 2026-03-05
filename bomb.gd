@@ -1,12 +1,14 @@
 extends Node
 
-var type
-var rotations
-var state # idle or ignited or exploding? or stinky? or moving?
-##their effect can be additive to the world instead of remaining "alive", ie a bomb should be able to die 
-#or be deleted/exploded from the world while it's effect could still persist. either that or a bomb has an
-#hp and can only be killed once, after which it decides for itself to remain as a stink cloud etc or just vanish
+var bomb_data = null
+var bomb_shape : Array[Vector2i] = Bombs.DATA[bomb_data.shape]
+var bomb_behaviour = Bombs.DATA[bomb_data.behaviour]
 
-#should have a child sprite/animatedsprite
+var rotations : int
+
+var is_ignited : bool = false
+#idle when not ignited. when hit by explosion, becomes ignited. when ignited, does "explosion" on next tick.
+
+#should have a child of sprite/animatedsprite
 
 #style idea: fuses could have a sine wave sorta cable drawn like a minecraft fishing rod from bomb to bomb

@@ -1,122 +1,149 @@
-extends Node2D
+class_name Bombs
 
 
-#probably chain reaction logic, and storing placed bombs here too
+enum Type {
+	C4,
+	FUSE,
+	CLAYMORE,
+	IED,
+	PIPE_BOMB,
+	ALT_PIPE_BOMB,
+	CARPET_BOMB,
+	BOMB_THREAT,
+	STINKBOMB,
+	RC_CARBOMB,
+	ALT_RC_CARBOMB,
+	AIRPLANE,
+	GRENADE
+}
 
-#color code the pipe bombs - big pipe in, small pipe out. paired color code
+enum Behaviour {
+	EXPLODE,
+	STINKY,
+	IMPACT,
+	IMPACT_AIR,
+	THREAT,
+	FUSE,
+	GRENADE
+}
 
-var reaction_started = false
-
-func evacuate_cell(evac_cell : Vector2i):
-	print("EVAC CELL: " + str(evac_cell))
-
-func damage_cell(dmg_cell : Vector2i):
-	print("DMG CELL: " + str(dmg_cell))
-
-func place_bomb(bomb_type: String, bomb_coordinate: Vector2i, rots: int = 0):
-	var bomb
-	
-	#--- cast the above to the instantiated bomb class
-	
-	
-	#replace bomb[] with bomb.type etc
-	if bomb["type"] == "GRENADE":
-		bomb["state"] = "ignited"
-	else: 
-		bomb["state"] = "idle" 
-	
-	if bomb["state"] == "idle": #just sprites
-		var bomb_sprite: Sprite2D = Sprite2D.new()
-		bomb_sprite.texture = load("res://prototype/proto bomb sprites/SPRITE_%s.png" % bomb_type)
-		bomb_sprite.position = bomb_coordinate * 64 + Vector2i(32, 32)
-		bomb_sprite.rotation = bomb["rotation"] * PI / 2
-		add_child(bomb_sprite)
-		
-		bomb["sprite"] = bomb_sprite
-		#once proper graphics installed, edit y position to match building heights
-		#conditionally, add extra sprites for pipe bombs and other stuff to help track orientation
-		if bomb_type == "PIPE_BOMB" or bomb_type == "ALT_PIPE_BOMB":
-			#place the extra sprite in the right spot according to rots
-			pass
-	
-	
-	
-	
-	
-	#
-	
-	#is placed_bombs necessary if instantiated bombs are child of $Bombs (self)?
-	#answer: no. GET RID! now that i have actual bomb class
-	
-	if reaction_started == false and bomb["type"] == "GRENADE":
-		$"../BombTick".start()
-
-func process_chain_reaction(): #this runs every time BombTick runs out
-	reaction_started = true
-	print("tick")
-	$"../BombTick".start()
-	
-	var new_ignitions: Array = []
-	var to_remove: Array = []
-	for bomb in $Bombs:
-		if bomb["state"] == "ignited": #then we will explode
-			bomb["state"] = "exploding"
-			var affected_cells = get_affected_cells(bomb)
-			for affected_cell in affected_cells: #damage and evac placeholders
-				
-				#take type for fuse bomb car etc for composite bombs (if those still exist)
-				#then work through each case
-				if $"../Map".in_bounds(affected_cell):
-					if bomb["type"] == "STINKBOMB":
-						evacuate_cell(affected_cell)
-					#else:
-					# damage
-					#composite bombs are STUPID
-			
-				
-				
-				#it's actually not causing a chain reaction currently.
-				print(str(affected_cell) + "affected cell")
-				
-			for other in $Bombs: # ignite or trigger other bombs
-				if other["state"] == "idle" and other["coordinate"] in affected_cells:
-					if other["type"] == "FUSE":
-						other["state"] = "ignited"
-					elif other["type"] == "STINKBOMB":
-						other["state"] = "stinky"
-					else:
-						new_ignitions.append(other)
-			
-			print(str(bomb["state"]))
-			$"../Effects".set_effects(affected_cells, bomb["state"])
-			to_remove.append(bomb) # mark this bomb for removal
-
-	# update new_ignitions to ignite next tick
-	for bomb in new_ignitions:
-		bomb["state"] = "ignited"
-
-	# actually remove exploded bombs ?? this looks funky. i might just need line 95 and 96 on their own, without the conditions. idk if to_remove is actually needed
-	for bomb in to_remove:
-		if bomb["sprite"] != null:
-			bomb["sprite"].queue_free()
-		placed_bombs.erase(bomb)
-
-
-
-func get_affected_cells(bomb: Dictionary):
-	var shape_data = get_parent().get(bomb["type"] + "_DATA")
-
-	print(shape_data)
-	var rotated_shape: Array[Vector2i] = []
-
-	for item in shape_data:
-		var rotated_offset = rotate_offset(item["offset"], bomb["rotation"])
-		rotated_shape.append(bomb["coordinate"] + rotated_offset)
-	return rotated_shape
-
-
-func rotate_offset(offset, bomb_rots):
-	var new_offset: Vector2i = offset
-	for rot in range(bomb_rots):
-		new_offset = Vector2i(-new_offset.y, new_offset.x) # clockwise
-	return new_offset
+const DATA := {
+	Type.C4: {
+		"shape" : [
+		Vector2i(1,0),
+		Vector2i(1,1),
+		Vector2i(0,1),
+		],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.FUSE: {
+		"shape" : [
+			Vector2i(1,0),
+			Vector2i(2,0),
+			Vector2i(3,0),
+		],
+		"behaviour" : Behaviour.FUSE
+	},
+	Type.CLAYMORE: {
+		"shape" : [
+		Vector2i(0,1),
+		Vector2i(1,1),
+		Vector2i(-1,1),
+		],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.IED: {
+		"shape" : [],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.PIPE_BOMB: {
+		"shape" : [Vector2i(2,1)],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.ALT_PIPE_BOMB: {
+		"shape" : [Vector2i(-2,1)],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.CARPET_BOMB: {
+		"shape" : [Vector2i(1,0),Vector2i(2,0),Vector2i(3,0)],
+		"behaviour" : Behaviour.EXPLODE
+	},
+	Type.BOMB_THREAT: {
+		"shape" : [],
+		"behaviour" :  Behaviour.THREAT
+	},
+	Type.STINKBOMB: {
+		"shape" : [
+			Vector2i(1,0),
+			Vector2i(-1,0),
+			Vector2i(0,1),
+			Vector2i(1,1),
+			Vector2i(-1,1),
+			Vector2i(0,-1),
+			Vector2i(1,-1),
+			Vector2i(-1,-1)
+			],
+		"behaviour" : Behaviour.STINKY
+	},
+	Type.RC_CARBOMB: {
+		"shape" : [Vector2i(1,0),Vector2i(1,1),Vector2i(1,2)],
+		"behaviour" : Behaviour.IMPACT
+	},
+	Type.ALT_RC_CARBOMB: {
+		"shape" : [
+			Vector2i(-1,0),
+			Vector2i(-1,1),
+			Vector2i(-1,2)],
+		"behaviour" : Behaviour.IMPACT
+	},
+	Type.AIRPLANE: {
+		#just a really long line. can definitely do this better. smart alec.
+		"shape" : [
+			Vector2i(-1,0),
+			Vector2i(-2,0),
+			Vector2i(-3,0),
+			Vector2i(-4,0),
+			Vector2i(-5,0),
+			Vector2i(-6,0),
+			Vector2i(-7,0),
+			Vector2i(-8,0),
+			Vector2i(-9,0),
+			Vector2i(-10,0),
+			Vector2i(-11,0),
+			Vector2i(-12,0),
+			Vector2i(-13,0),
+			Vector2i(-14,0),
+			Vector2i(-15,0),
+			Vector2i(-16,0),
+			Vector2i(-17,0),
+			Vector2i(-18,0),
+			Vector2i(-19,0),
+			Vector2i(-20,0),
+			Vector2i(0,0),
+			Vector2i(1,0),
+			Vector2i(2,0),
+			Vector2i(3,0),
+			Vector2i(4,0),
+			Vector2i(5,0),
+			Vector2i(6,0),
+			Vector2i(7,0),
+			Vector2i(8,0),
+			Vector2i(9,0),
+			Vector2i(10,0),
+			Vector2i(11,0),
+			Vector2i(12,0),
+			Vector2i(13,0),
+			Vector2i(14,0),
+			Vector2i(15,0),
+			Vector2i(16,0),
+			Vector2i(17,0),
+			Vector2i(18,0),
+			Vector2i(19,0),
+			Vector2i(20,0)],
+		"behaviour" : Behaviour.IMPACT_AIR
+	},
+	Type.GRENADE: {
+		"shape" : [],
+		"behaviour" : Behaviour.GRENADE
+	}
+}
