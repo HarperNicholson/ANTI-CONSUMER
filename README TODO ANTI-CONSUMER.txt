@@ -1,5 +1,5 @@
 "game" is broken. chain reaction and bomb class info is halfway
-rebuild core mechanism and UI elements, sprite lookups
+rebuild core mechanism and UI elements
 
 
 

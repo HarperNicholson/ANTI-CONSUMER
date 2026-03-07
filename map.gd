@@ -11,16 +11,6 @@ var Map : Array = []
 
 #add vehicles/people to this 
 
-func type_to_color(tile_type):
-	match tile_type:
-		"FUSE": return Color(1.0, 0.6, 0.0)
-		"THREAT": return Color.BLUE
-		"BOMB": return Color(0.8, 0.8, 0.0)
-		"IMPACT": return Color(0.5, 0.0, 1.0)
-		"IGNITE": return Color(1.0, 0.1, 0.1)
-		"STINK": return Color.GREEN
-		_: return Color.WHITE
-
 func highlight_cells(affected: Array) -> void:
 	for cell_info in affected:
 		if cell_info != null:
@@ -41,6 +31,13 @@ func clear_highlight(affected: Array) -> void:
 func in_bounds(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < hcells and cell.y >= 0 and cell.y < vcells
 
+
+
+func evacuate_cell(evac_cell : Vector2i):
+	print("EVAC CELL: " + str(evac_cell))
+
+func damage_cell(dmg_cell : Vector2i):
+	print("DMG CELL: " + str(dmg_cell))
 
 
 func _ready() -> void:

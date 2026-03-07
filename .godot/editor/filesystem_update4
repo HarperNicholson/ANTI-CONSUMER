@@ -1,4 +1,12 @@
 res://test.tscn
 res://visual/burn.gdshader
 res://visual/outline.gdshader
+res://bomb.gd
 res://game.gd
+res://cell.tscn
+res://cell.gd
+res://BombManager.gd
+res://polished/animation/explosion_effect.tscn
+res://polished/animation/animated_effect.tscn
+res://map.gd
+res://README TODO ANTI-CONSUMER.txt

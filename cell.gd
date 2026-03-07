@@ -1,4 +1,4 @@
-extends Node2D
+extends Sprite2D
 
 @export var h : int = -99
 @export var v : int = -99
@@ -37,9 +37,9 @@ func take_damage():
 func load_texture():
 	var texture_load_path = ("res://prototype/" + type + ("_dmged" if damaged else "") + ".png")
 	if FileAccess.file_exists(texture_load_path):
-		self.texture = load(texture_load_path)
+		texture = load(texture_load_path)
 	else:
-		self.texture = load("res://prototype/unassigned.png")
+		texture = load("res://prototype/unassigned.png")
 
 func specialize(metrocity):
 	var chance = clamp(0.20 * (metrocity/metrocity/metrocity), 0.0, 1.0)
