@@ -1,13 +1,16 @@
 extends Node2D
 
-var player_bombs_left = 10
+var player_bombs_left : int = 10
 
-var selected_bomb
+var selected_bomb_type : Bombs.Type = -1
 
 var anchor_tile : Vector2i = Vector2i.ZERO
+var last_anchor_tile : Vector2i = Vector2i(-999,-999)
 
-var local_shape = []
-var rots = 0
+var local_shape : Array[Vector2i] = []
+var last_local_shape : Array[Vector2i] = []
+
+var rots : int = 0
 
 var bombOptions : Array[Bombs.Type]
 
@@ -18,20 +21,9 @@ var bombOptions : Array[Bombs.Type]
 ]
 
 
-func type_to_color(tile_type):
-	match tile_type:
-		"FUSE": return Color(1.0, 0.6, 0.0)
-		"THREAT": return Color.BLUE
-		"BOMB": return Color(0.8, 0.8, 0.0)
-		"IMPACT": return Color(0.5, 0.0, 1.0)
-		"IGNITE": return Color(1.0, 0.1, 0.1)
-		"STINK": return Color.GREEN
-		_: return Color.WHITE
 
-
-
-func _ready() -> void:
-	$Interface/MetrocityLabel.text = "METROCITY: " + str($Map.metrocity)
+func _ready() -> void: #all UI logic and placeholder 
+	$Interface/MetrocityLabel.text = "METROCITY: " + str($Map.metrocity) #ph
 	
 	for btn in buttons:
 		btn.toggle_mode = true
@@ -43,33 +35,31 @@ func _on_button_toggled(pressed: bool, btn: TextureButton) -> void:
 			if other != btn:
 				other.set_pressed_no_signal(false)
 		
-		selected_bomb = btn
+		# selected_bomb_type = btn Bombs.Type
+		
 		
 		rots = 0
 		
-		$Interface/BombSelection/BombButton1.texture_normal = load("res://prototype/proto bomb sprites/SPRITE_" + str(bombOptions[0]) + ".png")
-		$Interface/BombSelection/BombButton2.texture_normal = load("res://prototype/proto bomb sprites/SPRITE_" + str(bombOptions[1]) + ".png")
-		$Interface/BombSelection/BombButton3.texture_normal = load("res://prototype/proto bomb sprites/SPRITE_" + str(bombOptions[2]) + ".png")
+		for i in range(buttons.size()):
+			buttons[i].texture_normal = load("res://prototype/proto bomb sprites/SPRITE_" + str(bombOptions[i]) + ".png")
 	
 	$Interface/BombSelection/Highlight.position = btn.position
 	$Interface/BombSelection/Highlight.show()
 
 
-#i want highlights to only update when absolutely necessary. i also want map to handle pretty much all of it
 func _process(_delta):
-	var mouse_pos = get_local_mouse_position()
-	anchor_tile = Vector2i(mouse_pos.x / 64, mouse_pos.y / 64)
-	
-	$Map.clear_highlight(affected)
-	affected.clear()
-	
-	for offset in local_shape:
-		var vec2i = anchor_tile + offset
-		affected.append(vec2i)
 	
 	$Interface/Bombs.text = "BOMBS: " + str(player_bombs_left) #ph
-	if selected_bomb != "" and mouse_pos.x >= 0 and mouse_pos.x < $Map.hcells * 64 and mouse_pos.y >= 0 and mouse_pos.y < $Map.vcells * 64:
-		$Map.highlight_cells(affected)
+	
+	var mouse_pos = get_local_mouse_position()
+	var new_tile = Vector2i(mouse_pos.x / 64, mouse_pos.y / 64)
+	
+	if new_tile != last_anchor_tile or local_shape != last_local_shape:
+		last_local_shape = local_shape
+		last_anchor_tile = new_tile
+		anchor_tile = new_tile
+		
+		$Map.preview_shape(anchor_tile, local_shape, Bombs.DATA[selected_bomb_type]["behaviour"])
 
 
 func _input(_event):
@@ -80,7 +70,7 @@ func _input(_event):
 				bombButton.set_pressed_no_signal(false)
 				send_bomb(bombButton)
 		
-		#if selected_bomb == "GRENADE":
+		if selected_bomb_type == Bombs.Type.GRENADE:
 			if mouse_pos > Vector2(0,0) and mouse_pos.x < $Map.hcells * 64 and mouse_pos.y < $Map.vcells * 64:
 				send_bomb()
 		
@@ -94,27 +84,21 @@ func send_bomb(bombButton = null):
 	if player_bombs_left <= 0:
 		return
 
-	var type = Bombs.Type.GRENADE if bombButton == null else bombOptions[int(bombButton.name.trim_prefix("BombButton")) - 1]
-	BombsManager.spawn_bomb(type, anchor_tile, rots)
-
-	if bombButton != null:
-		bombOptions[int(bombButton.name.trim_prefix("BombButton")) - 1] = BOMB_TYPES.pick_random()
+	#var type = Bombs.Type.GRENADE if grenade condition else its the bomb selected
+	$BombsManager.spawn_bomb(selected_bomb_type, anchor_tile, rots)
+   
+	#this is to give a new bomb option
+	#if bombButton != null: 
+	#	bombOptions[int(bombButton.name.trim_prefix("BombButton")) - 1] = BOMB_TYPES.pick_random()
 
 	player_bombs_left -= 1
-	selected_bomb = ""
-	$Interface/BombSelection/Highlight.hide()
+	selected_bomb_type = -1  # nullify the selected bomb
 	
-	
-	
-	selected_bomb = ""
-	$Interface/BombSelection/Highlight.hide()
+	#$Interface/BombSelection/Highlight.hide()  should have a UI manager probably
 
 func rotateBomb(anticlockwise: bool = false) -> void:
-	$Map.clear_highlight(affected)
-	affected.clear()
 	var rotated = []
-	for cell_info in local_shape:
-		var offset: Vector2i = cell_info["offset"]
+	for offset in local_shape:
 		var new_offset: Vector2i = Vector2i(offset.y, -offset.x) if anticlockwise else Vector2i(-offset.y, offset.x)
 		rotated.append(new_offset)
 	local_shape = rotated

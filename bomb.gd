@@ -26,11 +26,44 @@ func ignite():
 		is_ignited = true
 		# play animated sprite / ignition effect here
 		if sprite:
-			sprite.modulate = Color(1,0.7,0.7) # temporary visual feedback
+			sprite.modulate = Color(1,0.7,0.7) # temporary visual feedback, would be anim later I think
 
 func process_tick():
 	if is_ignited:
 		explode()
+
+
+func activate():
+
+	match behaviour:
+
+		Bombs.Behaviour.FUSE:
+			start_fuse()
+
+		Bombs.Behaviour.IMPACT:
+			explode()
+
+		Bombs.Behaviour.IMPACT_AIR:
+			play_airstrike()
+
+		Bombs.Behaviour.STINKY:
+			release_gas()
+
+
+grenade is like
+spawn
+start drop animation 
+#(matched to tick? I think they could run asynchronous..) let's not hard code and maybe I'll end up with redstone
+on land
+explode
+
+
+plane is like
+spawn plane
+plane flies
+bomb drops
+impact
+explode
 
 func explode():
 	
@@ -44,6 +77,7 @@ func explode():
 
 	queue_free()  # self-destruct after explosion
 
+# can I just reuse local shape or something probably but works perfectly fine
 func rotate_offset(offset: Vector2i, rot: int) -> Vector2i:
 	var new_offset = offset
 	for i in range(rot):

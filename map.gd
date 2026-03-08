@@ -7,37 +7,42 @@ var vcells = 11
 
 var cellScene = preload("res://cell.tscn")
 
+var highlighted_cells : Array = []
+
 var Map : Array = []
 
 #add vehicles/people to this 
 
-func highlight_cells(affected: Array) -> void:
-	for cell_info in affected:
-		if cell_info != null:
-			var pos: Vector2i = cell_info["pos"]
-			var color: Color = type_to_color(cell_info["type"])
-			if pos.x >= 0 and pos.x < hcells and pos.y >= 0 and pos.y < vcells:
-				Map[pos.x][pos.y].modulate = color
+func preview_shape(anchor : Vector2i, shape : Array, behaviour : Bombs.Behaviour):
+	
+	clear_preview()
+	
+	var color = behaviour_to_color(behaviour)
+	
+	for offset in shape:
+		var pos = anchor + offset
+		
+		if pos.x >= 0 and pos.x < hcells and pos.y >= 0 and pos.y < vcells:
+			var cell = Map[pos.x][pos.y]
+			cell.modulate = color
+			highlighted_cells.append(cell)
+
+func clear_preview():
+	for cell in highlighted_cells:
+		cell.modulate = Color.WHITE
+	highlighted_cells.clear()
 
 
-func clear_highlight(affected: Array) -> void:
-	for cell_info in affected:
-		if cell_info != null:
-			var pos: Vector2i = cell_info["pos"]
-			if pos.x >= 0 and pos.x < hcells and pos.y >= 0 and pos.y < vcells:
-				Map[pos.x][pos.y].modulate = Color.WHITE
+func behaviour_to_color(behaviour : Bombs.Behaviour):
+	match behaviour:
+		Bombs.Behaviour.FUSE: return Color(1.0, 0.6, 0.0)
+		Bombs.Behaviour.THREAT: return Color.BLUE
+		Bombs.Behaviour.GRENADE: return Color(0.8, 0.8, 0.0)
+		Bombs.Behaviour.IMPACT, Bombs.Behaviour.IMPACT_AIR: return Color(0.5, 0.0, 1.0)
+		Bombs.Behaviour.EXPLODE: return Color(1.0, 0.1, 0.1)
+		Bombs.Behaviour.STINKY: return Color.GREEN
+		_: return Color.WHITE
 
-
-func in_bounds(cell: Vector2i) -> bool:
-	return cell.x >= 0 and cell.x < hcells and cell.y >= 0 and cell.y < vcells
-
-
-
-func evacuate_cell(evac_cell : Vector2i):
-	print("EVAC CELL: " + str(evac_cell))
-
-func damage_cell(dmg_cell : Vector2i):
-	print("DMG CELL: " + str(dmg_cell))
 
 
 func _ready() -> void:

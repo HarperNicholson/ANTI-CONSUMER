@@ -1,5 +1,7 @@
 "game" is broken. chain reaction and bomb class info is halfway
 rebuild core mechanism and UI elements
+take all UI from game.gd and stick it in ui.gd 
+finish bomb.gd match statement and behaviour funcs 
 
 
 
