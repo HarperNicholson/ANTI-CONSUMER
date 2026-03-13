@@ -60,14 +60,21 @@ animations = [{
 "texture": null
 }],
 "loop": false,
-"name": &"default",
+"name": &"EXPLODE",
 "speed": 12.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"STINKY_LINGER",
+"speed": 5.0
 }]
 
-[node name="ExplosionEffect" type="AnimatedSprite2D" unique_id=1302411130]
+[node name="AnimatedEffect" type="AnimatedSprite2D" unique_id=1302411130]
 texture_filter = 1
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hhc8f")
-autoplay = "default"
+animation = &"STINKY_LINGER"
+autoplay = "EXPLODE"
 offset = Vector2(0, -16)
 script = ExtResource("13_ax3rg")
 metadata/_edit_lock_ = true

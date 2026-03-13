@@ -1,41 +1,47 @@
 extends Node2D
 
-var effect_scene : PackedScene = preload("res://polished/animation/animated_effect.tscn")
-
+@onready var Map : Node2D = $"../Map"
+@onready var EffectManager : Node2D = $"../EffectManager"
 
 
 func spawn_bomb(type: Bombs.Type, coord: Vector2i, rots: int = 0) -> void:
 	var bomb = Bomb.new(type, coord, rots)
 	add_child(bomb)
+	bomb.BombManager = self
+	bomb.EffectManager = EffectManager
+	bomb.position = Vector2i(32,32) + coord * 64
+	bomb.rotation = rots * PI/2
 	
-	# optional: add a sprite for tactical view
-	bomb.sprite = Sprite2D.new()
-	bomb.sprite.texture = load("res://prototype/proto bomb sprites/SPRITE_%s.png" % str(type))
-	bomb.sprite.position = Vector2(32,32)
-	bomb.sprite.rotation = rots * PI/2
-	bomb.add_child(bomb.sprite)
+	# also add a sprite for tactical view
+	
+	bomb.tactical_sprite = Sprite2D.new()
+	var _name = Bombs.Type.find_key(type)
+	#so, if preloaded sprite in table lookup is not null, spawn it. otherwise fuckyu
+	bomb.tactical_sprite.texture = load("res://prototype/bomb/SPRITE_%s.png" % _name) #should have this preloaded!
+	#but also.... it's so much work...
+	#and odds are... the amount of bombs loaded will be less than loading the entire spritebase....
+	bomb.add_child(bomb.tactical_sprite)
+
+
 
 func process_tick() -> void:
+	print("tick")
 	for bomb in get_children():  # iterate all live bombs
 		bomb.process_tick()
 
-# Called by bombs
-func notify_cell_hit(cell: Vector2i, behaviour: int) -> void:
-	#should damage_map_cell_at(cell)
-	var other_bomb = get_bomb_at(cell)
+# Called by bombs. 
+func notify_cell_hit(coordinate: Vector2i, bomb_that_struck : Node2D) -> void:
+	var cell_at_coordinate : Node2D = Map.Map[coordinate.x][coordinate.y]
+	
+	if cell_at_coordinate.value > 0:
+		bomb_that_struck.burned_value += cell_at_coordinate.value / cell_at_coordinate.height
+	
+	cell_at_coordinate.take_damage()
+	
+	var other_bomb = get_bomb_at(coordinate)
 	if other_bomb and not other_bomb.is_ignited:
 		other_bomb.ignite()
 
-func spawn_explosion_effect(cell: Vector2i, behaviour: int) -> void:
-	var explosion_effect_instance = effect_scene.instantiate()
-	explosion_effect_instance.position = Vector2i(32,32) * cell
-	add_child(explosion_effect_instance)
-	#may use behaviour to determine effect animation
-	# add particles
-
-func play_explosion_sound(cell: Vector2i, behaviour: int) -> void:
-	pass
-	# play SFX
 
 # optional helper: fast lookup
 func get_bomb_at(cell: Vector2i) -> Bomb:

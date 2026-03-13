@@ -11,7 +11,7 @@ var highlighted_cells : Array = []
 
 var Map : Array = []
 
-#add vehicles/people to this 
+#add vehicles/people
 
 func preview_shape(anchor : Vector2i, shape : Array, behaviour : Bombs.Behaviour):
 	

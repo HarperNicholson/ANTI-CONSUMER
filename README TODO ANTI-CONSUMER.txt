@@ -1,16 +1,17 @@
-"game" is broken. chain reaction and bomb class info is halfway
-rebuild core mechanism and UI elements
-take all UI from game.gd and stick it in ui.gd 
-finish bomb.gd match statement and behaviour funcs 
 
-
+only one bomb per tile
+animate value effects in a way that they would not overlap after 1sec
+value popup may only exist if a value greater than 0 is had
+finish bomb.gd behaviour funcs
+little preview bomb sprite that follows around anchor tile and rotations
 
 I should next establish "damage" to buildings, along with civilian count and placeholder value
+
 value, "height", civilian count should reflect what bombs are doing to that building
 
-use of value effect popup would be nice
 
+SFX and particle effects, screen shake with amplitude to explosion n of tiles, or screen shake for falling buildings
 
-further down the line, after all that is solid, SFX and basic particle effects maybe
+minecraft fishing rod line2d draw preview of sprite from bomb to bomb, and shader of burning fuse animated
 
 #color code the pipe bomb vs alt pipe bomb?? big pipe in, small pipe out. paired color code

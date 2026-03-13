@@ -5,10 +5,10 @@ extends Sprite2D
 @export var type : String = "unassigned"
 @export var height : int = 0 #determines height of building type 
 @export var hp : int = 0 #determins standing height
-@export var damaged : bool = false
+@export var damaged : bool = false #each cell should have two art versions
 @export var indoor_population : int = 0
 @export var attractiveness : int = 0 #buildings will be 0, but a park would be like 4 or something. makes for foot traffic
-@export var cell_value : int = 0 #set according to cell type, factor of height and some randomness
+@export var value : int = 0 #set according to cell type, factor of height and some randomness
 
 #more nice stuff in high metrocity. more playgrounds and ads in low metrocity.
 
@@ -20,6 +20,7 @@ func set_cell_type(type_to_set : String):
 
 func set_cell_height(target_height):
 	height = target_height
+	value = height * 1000
 	set_cell_hp(target_height)
 
 func set_cell_hp(target_hp):
@@ -33,6 +34,7 @@ func take_damage():
 	#civilians
 	#scoring
 	#load_texture/animation for damaged variant
+	
 
 func load_texture():
 	var texture_load_path = ("res://prototype/" + type + ("_dmged" if damaged else "") + ".png")

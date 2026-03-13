@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://budn0svtmixj7" path="res://game.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://c4s8u3cqbl2f8" path="res://map.gd" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://db612k0vea4n6" path="res://BombManager.gd" id="3_vbegm"]
-[ext_resource type="Script" uid="uid://cmpcje0hjyuiv" path="res://effects.gd" id="4_g14j6"]
+[ext_resource type="Script" uid="uid://cmpcje0hjyuiv" path="res://EffectManager.gd" id="4_g14j6"]
 [ext_resource type="Texture2D" uid="uid://26k77euhqe5c" path="res://prototype/unassigned.png" id="4_ppyta"]
 [ext_resource type="Script" uid="uid://db8sc1v3j7sjj" path="res://timer.gd" id="4_ykrsh"]
+[ext_resource type="Script" uid="uid://qm00lx51ifvo" path="res://ui.gd" id="5_ehkex"]
 [ext_resource type="Texture2D" uid="uid://bi4ltin761ryn" path="res://prototype/special.png" id="7_vbegm"]
+[ext_resource type="Texture2D" uid="uid://2kbmd0cnawfv" path="res://prototype/derelict.png" id="9_xersf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ykrsh"]
 
@@ -19,22 +21,23 @@ position = Vector2(32, 32)
 script = ExtResource("1_37kl0")
 metadata/_edit_lock_ = true
 
+[node name="BombTick" type="Timer" parent="." unique_id=2140523161]
+autostart = true
+
 [node name="BombManager" type="Node2D" parent="." unique_id=1416678443]
 script = ExtResource("3_vbegm")
 metadata/_edit_lock_ = true
 
-[node name="Effects" type="Node2D" parent="." unique_id=681614193]
+[node name="EffectManager" type="Node2D" parent="." unique_id=681614193]
 script = ExtResource("4_g14j6")
 metadata/_edit_lock_ = true
-
-[node name="BombTick" type="Timer" parent="." unique_id=2140523161]
-one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=573624975]
 position = Vector2(384, 400)
 metadata/_edit_lock_ = true
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=1199363050]
+script = ExtResource("5_ehkex")
 
 [node name="Label" type="Label" parent="Interface" unique_id=471032114]
 offset_left = 54.0
@@ -44,7 +47,7 @@ offset_bottom = 77.0
 text = "TIME: 0:00:00"
 script = ExtResource("4_ykrsh")
 
-[node name="Bombs" type="Label" parent="Interface" unique_id=1692720004]
+[node name="BombsLeftLabel" type="Label" parent="Interface" unique_id=1692720004]
 offset_left = 34.0
 offset_top = 90.0
 offset_right = 113.0
@@ -72,13 +75,37 @@ layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("4_ppyta")
 
-[node name="Highlight" type="Sprite2D" parent="Interface/BombSelection" unique_id=1777649301]
+[node name="BombSelectionHighlight" type="Sprite2D" parent="Interface" unique_id=1777649301]
 visible = false
 z_index = -1
-position = Vector2(32, 32)
+position = Vector2(64, 178)
 scale = Vector2(32, 32)
 texture = SubResource("CanvasTexture_ykrsh")
 offset = Vector2(0.5, 0.5)
+
+[node name="GrenadeBelt" type="HBoxContainer" parent="Interface" unique_id=1235944532]
+offset_left = 29.0
+offset_top = 579.0
+offset_right = 229.0
+offset_bottom = 643.0
+
+[node name="GrenadeButton1" type="TextureButton" parent="Interface/GrenadeBelt" unique_id=925188824]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+texture_disabled = ExtResource("9_xersf")
+
+[node name="GrenadeButton2" type="TextureButton" parent="Interface/GrenadeBelt" unique_id=879734103]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+texture_disabled = ExtResource("9_xersf")
+
+[node name="GrenadeButton3" type="TextureButton" parent="Interface/GrenadeBelt" unique_id=1400787394]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("7_vbegm")
+texture_disabled = ExtResource("9_xersf")
 
 [node name="BombDescription" type="RichTextLabel" parent="Interface" unique_id=1133065826]
 offset_left = 29.0
@@ -93,38 +120,11 @@ THIS IS THE DESCRIPT OF BOMBS
 
 ~~~~~~~~~~~~~~~~~"
 
-[node name="GrenadeButton1" type="TextureButton" parent="Interface" unique_id=925188824]
-offset_left = 18.0
-offset_top = 546.0
-offset_right = 82.0
-offset_bottom = 610.0
-toggle_mode = true
-texture_normal = ExtResource("7_vbegm")
-
-[node name="GrenadeButton2" type="TextureButton" parent="Interface" unique_id=879734103]
-offset_left = 96.0
-offset_top = 546.0
-offset_right = 160.0
-offset_bottom = 610.0
-toggle_mode = true
-texture_normal = ExtResource("7_vbegm")
-
-[node name="GrenadeButton3" type="TextureButton" parent="Interface" unique_id=1400787394]
-offset_left = 176.0
-offset_top = 546.0
-offset_right = 240.0
-offset_bottom = 610.0
-toggle_mode = true
-texture_normal = ExtResource("7_vbegm")
-
-[node name="MetrocityLabel" type="Label" parent="Interface" unique_id=1563093145]
+[node name="TEMPMetrocityLabel" type="Label" parent="Interface" unique_id=1563093145]
 offset_left = 992.0
 offset_top = 12.0
 offset_right = 1032.0
 offset_bottom = 35.0
 theme_override_constants/outline_size = 8
 
-[connection signal="timeout" from="BombTick" to="BombManager" method="process_chain_reaction"]
-[connection signal="toggled" from="Interface/GrenadeButton1" to="." method="_on_ignite_button_toggled"]
-[connection signal="toggled" from="Interface/GrenadeButton2" to="." method="_on_ignite_button_toggled"]
-[connection signal="toggled" from="Interface/GrenadeButton3" to="." method="_on_ignite_button_toggled"]
+[connection signal="timeout" from="BombTick" to="BombManager" method="process_tick"]
