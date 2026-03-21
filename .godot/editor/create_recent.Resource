@@ -1,2 +1,0 @@
-NoiseTexture2D
-CanvasTexture
