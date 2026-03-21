@@ -1,13 +1,3 @@
-res://civilian.tscn
+res://polished/animation/blood_splat_particle_effect.tscn
 res://visual/theme.tres
 res://visual/voronoi.tres
-res://civilian.gd
-res://test.tscn
-res://game.gd
-res://bomb.gd
-res://cell.gd
-res://map.gd
-res://EffectManager.gd
-res://BombManager.gd
-res://polished/animation/explosion_particle_effect.tscn
-res://README TODO ANTI-CONSUMER.txt
