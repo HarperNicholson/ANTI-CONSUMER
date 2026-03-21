@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://usyi53lo2g5g"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_213xq"]
+
+[sub_resource type="Gradient" id="Gradient_f6nig"]
+offsets = PackedFloat32Array(0.60714287, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_213xq"]
+colors = PackedColorArray(0.3515629, 0.3515629, 0.35156286, 1, 1, 1, 1, 1)
+
+[node name="ExplosionParticleEffect" type="CPUParticles2D" unique_id=589145813]
+emitting = false
+texture = SubResource("CanvasTexture_213xq")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.96
+randomness = 0.66
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 250.0
+initial_velocity_max = 350.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_f6nig")
+color_initial_ramp = SubResource("Gradient_213xq")

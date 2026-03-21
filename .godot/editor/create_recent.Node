@@ -1,3 +1,6 @@
+Sprite2D
+CPUParticles2D
+GPUParticles2D
 SubViewportContainer
 SubViewport
 CanvasLayer
@@ -6,9 +9,6 @@ CanvasGroup
 Label
 RichTextLabel
 Timer
-Sprite2D
 TextureButton
 AnimatedSprite2D
 Node2D
-Button
-HBoxContainer

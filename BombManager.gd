@@ -1,14 +1,12 @@
 extends Node2D
 
-@onready var Map : Node2D = $"../Map"
-@onready var EffectManager : Node2D = $"../EffectManager"
+var MapNode : Node2D
 
 
 func spawn_bomb(type: Bombs.Type, coord: Vector2i, rots: int = 0) -> void:
 	var bomb = Bomb.new(type, coord, rots)
 	add_child(bomb)
 	bomb.BombManager = self
-	bomb.EffectManager = EffectManager
 	bomb.position = Vector2i(32,32) + coord * 64
 	bomb.rotation = rots * PI/2
 	
@@ -30,11 +28,9 @@ func process_tick() -> void:
 		bomb.process_tick()
 
 # Called by bombs. 
-func notify_cell_hit(coordinate: Vector2i, bomb_that_struck : Node2D) -> void:
-	var cell_at_coordinate : Node2D = Map.Map[coordinate.x][coordinate.y]
+func notify_cell_hit(coordinate: Vector2i) -> void:
+	var cell_at_coordinate : Node2D = MapNode.MapArray[coordinate.x][coordinate.y]
 	
-	if cell_at_coordinate.value > 0:
-		bomb_that_struck.burned_value += cell_at_coordinate.value / cell_at_coordinate.height
 	
 	cell_at_coordinate.take_damage()
 	

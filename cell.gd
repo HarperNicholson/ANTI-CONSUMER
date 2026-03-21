@@ -5,6 +5,7 @@ extends Sprite2D
 @export var type : String = "unassigned"
 @export var height : int = 0 #determines height of building type 
 @export var hp : int = 0 #determins standing height
+@export var dead : bool = false #can only die once
 @export var damaged : bool = false #each cell should have two art versions
 @export var indoor_population : int = 0
 @export var attractiveness : int = 0 #buildings will be 0, but a park would be like 4 or something. makes for foot traffic
@@ -28,13 +29,23 @@ func set_cell_hp(target_hp):
 	$Label.text = (str(hp) if hp > 0 else "")
 
 func take_damage():
+	if dead:
+		return
 	if damaged == false:
 		damaged = true
 	set_cell_hp(hp - 1)
+	if hp <= 0:
+		die()
 	#civilians
 	#scoring
 	#load_texture/animation for damaged variant
-	
+
+func die():
+	if dead:
+		return
+	dead = true
+	EffectManager.spawn_value_popup(Vector2i(h,v), value)
+	#do some animation or something?
 
 func load_texture():
 	var texture_load_path = ("res://prototype/" + type + ("_dmged" if damaged else "") + ".png")

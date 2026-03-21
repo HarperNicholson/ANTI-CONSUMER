@@ -7,11 +7,28 @@ var vcells = 11
 
 var cellScene = preload("res://cell.tscn")
 
+enum MATERIAL_TYPES {
+	CONCRETE,
+	WOOD,
+	DIRT,
+	SAND,
+	WATER
+}
+
 var highlighted_cells : Array = []
 
-var Map : Array = []
+var MapArray : Array = []
 
 #add vehicles/people
+
+func get_cell_material(cell):
+	match MapArray[cell.x][cell.y].type:
+		"trees": return MATERIAL_TYPES.DIRT
+		"garden":  return MATERIAL_TYPES.DIRT
+		"beach": return MATERIAL_TYPES.SAND
+		"derelict": return MATERIAL_TYPES.WOOD
+	
+	return MATERIAL_TYPES.CONCRETE
 
 func preview_shape(anchor : Vector2i, shape : Array, behaviour : Bombs.Behaviour):
 	
@@ -23,7 +40,7 @@ func preview_shape(anchor : Vector2i, shape : Array, behaviour : Bombs.Behaviour
 		var pos = anchor + offset
 		
 		if pos.x >= 0 and pos.x < hcells and pos.y >= 0 and pos.y < vcells:
-			var cell = Map[pos.x][pos.y]
+			var cell = MapArray[pos.x][pos.y]
 			cell.modulate = color
 			highlighted_cells.append(cell)
 
@@ -53,7 +70,7 @@ func _ready() -> void:
 			var child = spawnEmptyCell(h, v)
 			add_child(child)
 			column.append(child)
-		Map.append(column)  # store column into Map
+		MapArray.append(column)  # store column into MapArray
 	
 	roads()
 	roundabouts()
@@ -88,28 +105,28 @@ func roads():
 			var v_index = randi_range(0, vcells - 1)
 
 			# prevent parallel horizontal roads
-			if (v_index > 0 and Map[0][v_index - 1].type.ends_with("road")) \
-			or (v_index < vcells - 1 and Map[0][v_index + 1].type.ends_with("road")):
+			if (v_index > 0 and MapArray[0][v_index - 1].type.ends_with("road")) \
+			or (v_index < vcells - 1 and MapArray[0][v_index + 1].type.ends_with("road")):
 				continue
 
 			for h in range(hcells):
-				if Map[h][v_index].type.ends_with("road") and randf() < 0.5:
+				if MapArray[h][v_index].type.ends_with("road") and randf() < 0.5:
 					break # stop at intersection
-				Map[h][v_index].set_cell_type("h_road")
+				MapArray[h][v_index].set_cell_type("h_road")
 				
 		else:
 			# vertical road
 			var h_index = randi_range(0, hcells - 1)
 
 			# prevent parallel vertical roads
-			if (h_index > 0 and Map[h_index - 1][0].type.ends_with("road")) \
-			or (h_index < hcells - 1 and Map[h_index + 1][0].type.ends_with("road")):
+			if (h_index > 0 and MapArray[h_index - 1][0].type.ends_with("road")) \
+			or (h_index < hcells - 1 and MapArray[h_index + 1][0].type.ends_with("road")):
 				continue
 
 			for v in range(vcells):
-				if Map[h_index][v].type.ends_with("road") and randf() < 0.5:
+				if MapArray[h_index][v].type.ends_with("road") and randf() < 0.5:
 					break
-				Map[h_index][v].set_cell_type("v_road")
+				MapArray[h_index][v].set_cell_type("v_road")
 
 
 
@@ -118,93 +135,93 @@ func roundabouts():
 	for h in range(1, hcells - 2):
 		for v in range(1, vcells - 2):
 			# look for true 4-way intersections
-			if Map[h][v].type.ends_with("road") \
-			and Map[h-1][v].type.ends_with("road") \
-			and Map[h+1][v].type.ends_with("road") \
-			and Map[h][v-1].type.ends_with("road") \
-			and Map[h][v+1].type.ends_with("road") \
-			and not Map[h-1][v-1].type.ends_with("road") \
-			and not Map[h-1][v+1].type.ends_with("road") \
-			and not Map[h+1][v-1].type.ends_with("road") \
-			and not Map[h+1][v+1].type.ends_with("road") \
-			and not Map[h-1][v-2].type.ends_with("road") \
-			and not Map[h-1][v+2].type.ends_with("road") \
-			and not Map[h+1][v-2].type.ends_with("road") \
-			and not Map[h+1][v+2].type.ends_with("road") \
-			and not Map[h-2][v-2].type.ends_with("road") \
-			and not Map[h-2][v+2].type.ends_with("road") \
-			and not Map[h+2][v-2].type.ends_with("road") \
-			and not Map[h+2][v+2].type.ends_with("road"):
+			if MapArray[h][v].type.ends_with("road") \
+			and MapArray[h-1][v].type.ends_with("road") \
+			and MapArray[h+1][v].type.ends_with("road") \
+			and MapArray[h][v-1].type.ends_with("road") \
+			and MapArray[h][v+1].type.ends_with("road") \
+			and not MapArray[h-1][v-1].type.ends_with("road") \
+			and not MapArray[h-1][v+1].type.ends_with("road") \
+			and not MapArray[h+1][v-1].type.ends_with("road") \
+			and not MapArray[h+1][v+1].type.ends_with("road") \
+			and not MapArray[h-1][v-2].type.ends_with("road") \
+			and not MapArray[h-1][v+2].type.ends_with("road") \
+			and not MapArray[h+1][v-2].type.ends_with("road") \
+			and not MapArray[h+1][v+2].type.ends_with("road") \
+			and not MapArray[h-2][v-2].type.ends_with("road") \
+			and not MapArray[h-2][v+2].type.ends_with("road") \
+			and not MapArray[h+2][v-2].type.ends_with("road") \
+			and not MapArray[h+2][v+2].type.ends_with("road"):
 				
 				if randf() < 0.5:  # rare (10% of intersections)
 					# Replace center with a special type
 					var intersection_special_centers = ["trees", "derelict", "advert", "building", "garden", "statue",  "statue", "advert", "advert", "statue",]
-					Map[h][v].set_cell_type(intersection_special_centers[randi() % intersection_special_centers.size()])
-					if Map[h][v].type == "building": Map[h][v].height = randi_range(2,4)
+					MapArray[h][v].set_cell_type(intersection_special_centers[randi() % intersection_special_centers.size()])
+					if MapArray[h][v].type == "building": MapArray[h][v].height = randi_range(2,4)
 					
 					# Convert cardinal neighbors to 3-way road types
-					Map[h-1][v].set_cell_type("w_road")
-					Map[h+1][v].set_cell_type("e_road")
-					Map[h][v-1].set_cell_type("n_road")
-					Map[h][v+1].set_cell_type("s_road")
+					MapArray[h-1][v].set_cell_type("w_road")
+					MapArray[h+1][v].set_cell_type("e_road")
+					MapArray[h][v-1].set_cell_type("n_road")
+					MapArray[h][v+1].set_cell_type("s_road")
 					
 					# Convert diagonal corners to turning roads
-					Map[h-1][v-1].set_cell_type("nw_road")
-					Map[h+1][v-1].set_cell_type("ne_road")
-					Map[h-1][v+1].set_cell_type("sw_road")
-					Map[h+1][v+1].set_cell_type("se_road")
+					MapArray[h-1][v-1].set_cell_type("nw_road")
+					MapArray[h+1][v-1].set_cell_type("ne_road")
+					MapArray[h-1][v+1].set_cell_type("sw_road")
+					MapArray[h+1][v+1].set_cell_type("se_road")
 
 func intersections():
 	for h in range(hcells):
 		for v in range(vcells):
-			if Map[h][v].type.ends_with("road"):
-				var n = h > 0 and Map[h-1][v].type.ends_with("road")
-				var s = h < hcells - 1 and Map[h+1][v].type.ends_with("road")
-				var w = v > 0 and Map[h][v-1].type.ends_with("road")
-				var e = v < vcells - 1 and Map[h][v+1].type.ends_with("road")
+			if MapArray[h][v].type.ends_with("road"):
+				var n = h > 0 and MapArray[h-1][v].type.ends_with("road")
+				var s = h < hcells - 1 and MapArray[h+1][v].type.ends_with("road")
+				var w = v > 0 and MapArray[h][v-1].type.ends_with("road")
+				var e = v < vcells - 1 and MapArray[h][v+1].type.ends_with("road")
 				
 				var count = int(n) + int(s) + int(w) + int(e)
 				
 				if count == 4:
-					Map[h][v].set_cell_type("fourway_road")
+					MapArray[h][v].set_cell_type("fourway_road")
 				elif count == 3:
 					if not n:
-						Map[h][v].set_cell_type("e_road")
+						MapArray[h][v].set_cell_type("e_road")
 					elif not s:
-						Map[h][v].set_cell_type("w_road")
+						MapArray[h][v].set_cell_type("w_road")
 					elif not w:
-						Map[h][v].set_cell_type("s_road")
+						MapArray[h][v].set_cell_type("s_road")
 					elif not e:
-						Map[h][v].set_cell_type("n_road")
+						MapArray[h][v].set_cell_type("n_road")
 
 func roadcorners():
 	for h in range(hcells):
 		for v in range(vcells):
-			if Map[h][v].type.ends_with("road"):
+			if MapArray[h][v].type.ends_with("road"):
 				# Check neighbors safely
-				var n = h > 0 and Map[h-1][v].type.ends_with("road")
-				var s = h < hcells - 1 and Map[h+1][v].type.ends_with("road")
-				var w = v > 0 and Map[h][v-1].type.ends_with("road")
-				var e = v < vcells - 1 and Map[h][v+1].type.ends_with("road")
+				var n = h > 0 and MapArray[h-1][v].type.ends_with("road")
+				var s = h < hcells - 1 and MapArray[h+1][v].type.ends_with("road")
+				var w = v > 0 and MapArray[h][v-1].type.ends_with("road")
+				var e = v < vcells - 1 and MapArray[h][v+1].type.ends_with("road")
 				
 				var count = int(n) + int(s) + int(w) + int(e)
 				
 				# Corner = exactly 2 neighbors that are NOT opposite
 				if count == 2:
 					if n and e:
-						Map[h][v].set_cell_type("ne_road")
+						MapArray[h][v].set_cell_type("ne_road")
 					elif e and s:
-						Map[h][v].set_cell_type("nw_road")
+						MapArray[h][v].set_cell_type("nw_road")
 					elif s and w:
-						Map[h][v].set_cell_type("sw_road")
+						MapArray[h][v].set_cell_type("sw_road")
 					elif w and n:
-						Map[h][v].set_cell_type("se_road")
+						MapArray[h][v].set_cell_type("se_road")
 
 
 func buildings():
 	var to_alley: Array = []
 
-	for column in Map:
+	for column in MapArray:
 		for cell in column:
 			if cell.type == "unassigned":
 				cell.set_cell_type("building")
@@ -222,16 +239,16 @@ func buildings():
 				var alley := false
 
 				# UP
-				if v >= 3 and Map[h][v-1].type == "building" and Map[h][v-2].type == "building" and Map[h][v-3].type == "building":
+				if v >= 3 and MapArray[h][v-1].type == "building" and MapArray[h][v-2].type == "building" and MapArray[h][v-3].type == "building":
 					alley = true
 				# DOWN
-				elif v <= vcells-4 and Map[h][v+1].type == "building" and Map[h][v+2].type == "building" and Map[h][v+3].type == "building":
+				elif v <= vcells-4 and MapArray[h][v+1].type == "building" and MapArray[h][v+2].type == "building" and MapArray[h][v+3].type == "building":
 					alley = true
 				# LEFT
-				elif h >= 3 and Map[h-1][v].type == "building" and Map[h-2][v].type == "building" and Map[h-3][v].type == "building":
+				elif h >= 3 and MapArray[h-1][v].type == "building" and MapArray[h-2][v].type == "building" and MapArray[h-3][v].type == "building":
 					alley = true
 				# RIGHT
-				elif h <= hcells-4 and Map[h+1][v].type == "building" and Map[h+2][v].type == "building" and Map[h+3][v].type == "building":
+				elif h <= hcells-4 and MapArray[h+1][v].type == "building" and MapArray[h+2][v].type == "building" and MapArray[h+3][v].type == "building":
 					alley = true
 				
 				# Don't carve every wall, only ~60% of them
@@ -246,7 +263,7 @@ func buildings():
 
 
 func alleyClear():
-	for column in Map:
+	for column in MapArray:
 		for cell in column:
 			if cell.type != "building":
 				continue  # only modify buildings
@@ -256,13 +273,13 @@ func alleyClear():
 			var alley_neighbors := 0
 
 			# count adjacent alleys
-			if v > 0 and Map[h][v-1].type == "alley":
+			if v > 0 and MapArray[h][v-1].type == "alley":
 				alley_neighbors += 1
-			if v < vcells-1 and Map[h][v+1].type == "alley":
+			if v < vcells-1 and MapArray[h][v+1].type == "alley":
 				alley_neighbors += 1
-			if h > 0 and Map[h-1][v].type == "alley":
+			if h > 0 and MapArray[h-1][v].type == "alley":
 				alley_neighbors += 1
-			if h < hcells-1 and Map[h+1][v].type == "alley":
+			if h < hcells-1 and MapArray[h+1][v].type == "alley":
 				alley_neighbors += 1
 
 			# if surrounded by many alleys then almost certain
@@ -281,11 +298,11 @@ func advertCarve():
 	#randomly place adverts
 	for h in range(hcells):
 		for v in range(vcells):
-			if Map[h][v].type == "building":
+			if MapArray[h][v].type == "building":
 				# Chance to seed increases slightly with metrocity
 				var chance = (metrocity - 1.9) * 0.7  # 0 at 2.0, ~0.15 at 3.0
 				if randf() < chance:
-					Map[h][v].set_cell_type("advert")
+					MapArray[h][v].set_cell_type("advert")
 					advert_cells.append(Vector2i(h, v))
 
 	#Carve neighbors outward
@@ -294,15 +311,15 @@ func advertCarve():
 			var nh = pos.x + offset.x
 			var nv = pos.y + offset.y
 			if nh >= 0 and nh < hcells and nv >= 0 and nv < vcells:
-				if Map[nh][nv].type == "building":
+				if MapArray[nh][nv].type == "building":
 					var neighbor_chance = (metrocity/(metrocity*1.2)) * 0.3  # 0 at 2.0, ~0.25 at 3.0
 					if randf() < neighbor_chance:
-						Map[nh][nv].set_cell_type("advert")
+						MapArray[nh][nv].set_cell_type("advert")
 
 func _is_alley(h:int, v:int) -> bool:
 	if h < 0 or h >= hcells or v < 0 or v >= vcells:
 		return false
-	var t = Map[h][v].type
+	var t = MapArray[h][v].type
 	return typeof(t) == TYPE_STRING and t.ends_with("alley")
 
 
@@ -321,14 +338,14 @@ func specialCheck():
 			and _is_alley(h, v-1) and _is_alley(h, v+1) \
 			and _is_alley(h-1, v-1) and _is_alley(h-1, v+1) \
 			and _is_alley(h+1, v-1) and _is_alley(h+1, v+1):
-				to_special.append(Map[h][v])
+				to_special.append(MapArray[h][v])
 
 	# apply after scanning to avoid mid-scan mutation effects
 	for cell in to_special:
 		cell.specialize(metrocity)
 
 func derelictCheck():
-	for column in Map:
+	for column in MapArray:
 		for cell in column:
 			if cell.type == "building" and randf() < 0.13 / metrocity:
 				cell.set_cell_type("derelict")
@@ -336,5 +353,5 @@ func derelictCheck():
 
 func addBeach():
 	for h in range(hcells):
-		Map[h][vcells-1].set_cell_type("beach")
-		Map[h][vcells-1].set_cell_height(0)
+		MapArray[h][vcells-1].set_cell_type("beach")
+		MapArray[h][vcells-1].set_cell_height(0)

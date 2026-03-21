@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://budn0svtmixj7" path="res://game.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://c4s8u3cqbl2f8" path="res://map.gd" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://db612k0vea4n6" path="res://BombManager.gd" id="3_vbegm"]
-[ext_resource type="Script" uid="uid://cmpcje0hjyuiv" path="res://EffectManager.gd" id="4_g14j6"]
 [ext_resource type="Texture2D" uid="uid://26k77euhqe5c" path="res://prototype/unassigned.png" id="4_ppyta"]
 [ext_resource type="Script" uid="uid://db8sc1v3j7sjj" path="res://timer.gd" id="4_ykrsh"]
 [ext_resource type="Script" uid="uid://qm00lx51ifvo" path="res://ui.gd" id="5_ehkex"]
@@ -28,8 +27,7 @@ autostart = true
 script = ExtResource("3_vbegm")
 metadata/_edit_lock_ = true
 
-[node name="EffectManager" type="Node2D" parent="." unique_id=681614193]
-script = ExtResource("4_g14j6")
+[node name="Effects" type="Node2D" parent="." unique_id=681614193]
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=573624975]

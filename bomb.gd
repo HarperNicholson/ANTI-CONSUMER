@@ -10,7 +10,6 @@ var is_ignited : bool = false
 var fuseticks : int = 1
 
 var BombManager : Node2D
-var EffectManager : Node2D
 
 # Visuals
 var tactical_sprite : Sprite2D
@@ -70,16 +69,15 @@ func rotate_offset(offset: Vector2i, rot: int) -> Vector2i:
 		new_offset = Vector2i(-new_offset.y, new_offset.x)  # clockwise
 	return new_offset
 
-var burned_value : int = 0
 
 func explode():
 	if BombManager:
 		for offset in shape:
-			var affected_cell = coordinate + rotate_offset(offset, rotations)
-			BombManager.notify_cell_hit(affected_cell, self)
-			EffectManager.spawn_effect(affected_cell, behaviour)
+			var affected_cell_coordinate = coordinate + rotate_offset(offset, rotations)
+			BombManager.notify_cell_hit(affected_cell_coordinate)
+			EffectManager.spawn_animated_effect(affected_cell_coordinate, behaviour)
+			EffectManager.spawn_particle_effect(affected_cell_coordinate)
 		EffectManager.play_sound(coordinate, behaviour)
-		EffectManager.spawn_value_popup(coordinate, burned_value) 
 	queue_free()  # self-destruct after explosion
 
 

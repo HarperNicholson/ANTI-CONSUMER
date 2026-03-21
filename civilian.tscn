@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://c6hty38y42g2n"]
+
+[ext_resource type="Script" uid="uid://de3oly4sotrv0" path="res://civilian.gd" id="1_aclks"]
+
+[sub_resource type="Gradient" id="Gradient_aclks"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.07090464, 0.28361857, 0.5183374, 0.76122934, 1)
+colors = PackedColorArray(0.09, 0.054330003, 0.037800003, 1, 0.15, 0.061875004, 0.0375, 1, 0.43387964, 0.14622012, 0, 1, 0.94657, 0.7745221, 0.6601666, 1, 0.99999815, 0.6120287, 0.5063004, 1, 1, 0.6706667, 0.48000002, 1)
+
+[sub_resource type="Gradient" id="Gradient_y0e6j"]
+offsets = PackedFloat32Array(0, 0.1002445, 0.5354523, 0.9290953, 1)
+colors = PackedColorArray(0.8560673, 0.8560673, 0.856067, 1, 0.07683588, 0.0768358, 0.0768358, 1, 0.15, 0.04542501, 0.016500004, 1, 0.9597366, 0.7212875, 0.38421297, 1, 1, 0.4, 0.28627452, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hairy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_aclks"]
+
+[node name="Civilian" type="Node2D" unique_id=1593687168]
+scale = Vector2(4, 4)
+script = ExtResource("1_aclks")
+skin_gradient = SubResource("Gradient_aclks")
+hair_gradient = SubResource("Gradient_y0e6j")
+
+[node name="Head" type="Sprite2D" parent="." unique_id=1175187231]
+self_modulate = Color(1, 0.848, 0.76, 1)
+position = Vector2(0, -1)
+texture = SubResource("CanvasTexture_hairy")
+
+[node name="Hair" type="Sprite2D" parent="Head" unique_id=489255977]
+self_modulate = Color(0.29, 0.12788999, 0.06380001, 1)
+position = Vector2(0, -0.25)
+scale = Vector2(1, 0.5)
+texture = SubResource("CanvasTexture_aclks")
+
+[node name="Hat" type="Sprite2D" parent="Head" unique_id=1118180837]
+modulate = Color(0.1325, 0.2914999, 0.53, 1)
+position = Vector2(0, -0.75)
+scale = Vector2(1, 0.5)
+texture = SubResource("CanvasTexture_aclks")
+
+[node name="Pants" type="Sprite2D" parent="." unique_id=695677383]
+modulate = Color(0.15127608, 0.15127608, 0.15127608, 1)
+position = Vector2(0, 0.5)
+texture = SubResource("CanvasTexture_hairy")
+
+[node name="LegR" type="Sprite2D" parent="Pants" unique_id=152764271]
+position = Vector2(-0.25, 0.5)
+scale = Vector2(0.5, 1)
+texture = SubResource("CanvasTexture_hairy")
+offset = Vector2(0, 0.5)
+
+[node name="LegL" type="Sprite2D" parent="Pants" unique_id=794708916]
+position = Vector2(0.25, 0.5)
+scale = Vector2(0.5, 1)
+texture = SubResource("CanvasTexture_hairy")
+offset = Vector2(0, 0.5)
+
+[node name="Shirt" type="Sprite2D" parent="." unique_id=1143070944]
+modulate = Color(0.13333334, 0.2901961, 0.5294118, 1)
+texture = SubResource("CanvasTexture_hairy")
+
+[node name="ArmR" type="Sprite2D" parent="Shirt" unique_id=1649229205]
+position = Vector2(0.5, -0.25)
+rotation = 1.5707964
+scale = Vector2(1, 0.5)
+texture = SubResource("CanvasTexture_hairy")
+offset = Vector2(0.5, 0)
+
+[node name="ArmL" type="Sprite2D" parent="Shirt" unique_id=356804306]
+position = Vector2(-0.5, -0.25)
+rotation = -1.5707964
+scale = Vector2(1, 0.5)
+texture = SubResource("CanvasTexture_hairy")
+offset = Vector2(-0.5, 0)

@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var player_bombs_left : int = 10
 
 var selected_bomb_type : Bombs.Type = Bombs.Type.NONE
@@ -31,6 +32,10 @@ const ROLLABLE_TYPES := [
 ]
 
 func _ready():
+	EffectManager.EffectsNode = $Effects
+	EffectManager.MapNode = $Map
+	$BombManager.MapNode = $Map
+	
 	bombOptions.resize(3)
 	for i in range(3):
 		roll_bomb_option(i)
@@ -49,6 +54,12 @@ func select_bomb(type : Bombs.Type, index : int):
 func send_bomb():
 	if (selected_bomb_type != Bombs.Type.GRENADE and player_bombs_left <= 0) or selected_bomb_type == Bombs.Type.NONE:
 		return
+	
+	#weird AF
+	if (selected_bomb_type != Bombs.Type.GRENADE) :#or (selected_bomb_type != Bombs.Type.BOMB_THREAT) or (selected_bomb_type != Bombs.Type.AIRPLANE):
+		for bomb in $BombManager.get_children():
+			if bomb.coordinate == anchor_tile:
+				return
 	
 	$BombManager.spawn_bomb(selected_bomb_type, anchor_tile, rotations)
 	

@@ -1,23 +1,26 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1773409424
+::res://::1774044977
 animated_effect.gd::GDScript::8651625659470192990::1773258947::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
-bomb.gd::GDScript::6404713193042442255::1773257829::0::1::::Bomb<>Node2D<><>0<>0<><>::
-BombManager.gd::GDScript::7295074028153683949::1773259189::0::1::::<>Node2D<><>0<>0<><>::
+bomb.gd::GDScript::6404713193042442255::1773871579::0::1::::Bomb<>Node2D<><>0<>0<><>::
+BombManager.gd::GDScript::7295074028153683949::1773606421::0::1::::<>Node2D<><>0<>0<><>::
 Bombs_Class.gd::GDScript::7429670269125641223::1773251673::0::1::::Bombs<>RefCounted<><>0<>0<><>::
-cell.gd::GDScript::5580933768395169996::1773255532::0::1::::<>Sprite2D<><>0<>0<><>::
+cell.gd::GDScript::5580933768395169996::1773606361::0::1::::<>Sprite2D<><>0<>0<><>::
 cell.tscn::PackedScene::4062531759231000567::1772845115::0::1::::<><><>0<>0<><>::uid://26k77euhqe5c::::res://prototype/unassigned.png<>uid://clrpftlih6oky::::res://cell.gd
-EffectManager.gd::GDScript::5646210912528717029::1773259319::0::1::::<>Node2D<><>0<>0<><>::
-game.gd::GDScript::3797225634210360270::1773251074::0::1::::<>Node2D<><>0<>0<><>::
+civilian.gd::GDScript::7498690990573835807::1774021238::0::1::::<>Node2D<><>0<>0<><>::
+civilian.tscn::PackedScene::6964344169122527523::1774021238::0::1::::<><><>0<>0<><>::uid://de3oly4sotrv0::::res://civilian.gd
+EffectManager.gd::GDScript::5646210912528717029::1773871503::0::1::::<>Node2D<><>0<>0<><>::
+game.gd::GDScript::3797225634210360270::1773620646::0::1::::<>Node2D<><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::5353547725409513966::1772845116::1772845116::1::::<><><>0<>0<>1257f7b1d1ff2926322f4a29699b8ec6<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 map.gd::GDScript::6847517483573788191::1773259107::0::1::::<>Node2D<><>0<>0<><>::
-README TODO ANTI-CONSUMER.txt::TextFile::-1::1773254245::0::1::::<><><>0<>0<><>::
-test.tscn::PackedScene::8442095116110854608::1773259347::0::1::::<><><>0<>0<><>::uid://budn0svtmixj7::::res://game.gd<>uid://c4s8u3cqbl2f8::::res://map.gd<>uid://db612k0vea4n6::::res://BombManager.gd<>uid://cmpcje0hjyuiv::::res://EffectManager.gd<>uid://26k77euhqe5c::::res://prototype/unassigned.png<>uid://db8sc1v3j7sjj::::res://timer.gd<>uid://qm00lx51ifvo::::res://ui.gd<>uid://bi4ltin761ryn::::res://prototype/special.png<>uid://2kbmd0cnawfv::::res://prototype/derelict.png
+README TODO ANTI-CONSUMER.txt::TextFile::-1::1774014736::0::1::::<><><>0<>0<><>::
+test.tscn::PackedScene::8442095116110854608::1773620640::0::1::::<><><>0<>0<><>::uid://budn0svtmixj7::::res://game.gd<>uid://c4s8u3cqbl2f8::::res://map.gd<>uid://db612k0vea4n6::::res://BombManager.gd<>uid://26k77euhqe5c::::res://prototype/unassigned.png<>uid://db8sc1v3j7sjj::::res://timer.gd<>uid://qm00lx51ifvo::::res://ui.gd<>uid://bi4ltin761ryn::::res://prototype/special.png<>uid://2kbmd0cnawfv::::res://prototype/derelict.png
 timer.gd::GDScript::7298673237392408531::1772845120::0::1::::<>Label<><>0<>0<><>::
 ui.gd::GDScript::1149357215609501004::1773174081::0::1::::<>Node<><>0<>0<><>::
 ::res://polished/::1768613244
-::res://polished/animation/::1773259418
-animated_effect.tscn::PackedScene::9136192923395691157::1773258783::0::1::::<><><>0<>0<><>::uid://cvhtpiww6ib4e::::res://polished/animation/explosion/explosion0001.png<>uid://f3iunl0lyxwm::::res://polished/animation/explosion/explosion0002.png<>uid://d4ljvm8k5r0dh::::res://polished/animation/explosion/explosion0003.png<>uid://c2qk3rvueptjb::::res://polished/animation/explosion/explosion0004.png<>uid://3ff1id8ukkvd::::res://polished/animation/explosion/explosion0005.png<>uid://c6ncdjaqf00np::::res://polished/animation/explosion/explosion0006.png<>uid://5edh2xoo2uu0::::res://polished/animation/explosion/explosion0007.png<>uid://c7806ca5iqt4n::::res://polished/animation/explosion/explosion0008.png<>uid://c1gmjegrf66ce::::res://polished/animation/explosion/explosion0009.png<>uid://yijvbhblktr0::::res://polished/animation/explosion/explosion0010.png<>uid://cqojf4ioxx4us::::res://polished/animation/explosion/explosion0011.png<>uid://oc413wphv0y2::::res://polished/animation/explosion/explosion0012.png<>uid://dvi6amimac1ks::::res://animated_effect.gd
-value_popup.tscn::PackedScene::2441954637346743857::1773259418::0::1::::<><><>0<>0<><>::uid://yv3yut1q83so::::res://visual/theme.tres<>uid://d06n37hrvmfhc::::res://visual/burn.gdshader<>uid://b5gw3fp0cmuu5::::res://visual/voronoi.tres<>uid://deyhx6rabdeut::::res://visual/value_popup.gd<>uid://4lmnqmedb36j::::res://visual/new_noise_texture_2d.tres
+::res://polished/animation/::1774014736
+animated_effect.tscn::PackedScene::9136192923395691157::1773774813::0::1::::<><><>0<>0<><>::uid://cvhtpiww6ib4e::::res://polished/animation/explosion/explosion0001.png<>uid://f3iunl0lyxwm::::res://polished/animation/explosion/explosion0002.png<>uid://d4ljvm8k5r0dh::::res://polished/animation/explosion/explosion0003.png<>uid://c2qk3rvueptjb::::res://polished/animation/explosion/explosion0004.png<>uid://3ff1id8ukkvd::::res://polished/animation/explosion/explosion0005.png<>uid://c6ncdjaqf00np::::res://polished/animation/explosion/explosion0006.png<>uid://5edh2xoo2uu0::::res://polished/animation/explosion/explosion0007.png<>uid://c7806ca5iqt4n::::res://polished/animation/explosion/explosion0008.png<>uid://c1gmjegrf66ce::::res://polished/animation/explosion/explosion0009.png<>uid://yijvbhblktr0::::res://polished/animation/explosion/explosion0010.png<>uid://cqojf4ioxx4us::::res://polished/animation/explosion/explosion0011.png<>uid://oc413wphv0y2::::res://polished/animation/explosion/explosion0012.png<>uid://dvi6amimac1ks::::res://animated_effect.gd
+explosion_particle_effect.tscn::PackedScene::1442408785985953458::1774014736::0::1::::<><><>0<>0<><>::uid://4kp0lym2lc86::::res://prototype/bomb/SPRITE_IED.png
+value_popup.tscn::PackedScene::2441954637346743857::1773605623::0::1::::<><><>0<>0<><>::uid://yv3yut1q83so::::res://visual/theme.tres<>uid://d06n37hrvmfhc::::res://visual/burn.gdshader<>uid://b5gw3fp0cmuu5::::res://visual/voronoi.tres<>uid://deyhx6rabdeut::::res://visual/value_popup.gd<>uid://4lmnqmedb36j::::res://visual/new_noise_texture_2d.tres
 ::res://polished/animation/explosion/::1773010682
 explosion0001.png::CompressedTexture2D::6262438593048257490::1772845116::1772845116::1::::<><><>0<>0<>b1c6f52a902f051475b9029a29daf86c<>res://.godot/imported/explosion0001.png-52baf6709a9716a04ed3745be1b23626.ctex::
 explosion0002.png::CompressedTexture2D::409268948072021668::1772845116::1772845116::1::::<><><>0<>0<>9195691a7a428052e8cd6754d6a1485f<>res://.godot/imported/explosion0002.png-b80422a791f2d19724255d7e373309e7.ctex::
@@ -69,7 +72,7 @@ SPRITE_IED.png::CompressedTexture2D::2057076258196555793::1772845119::1773163813
 SPRITE_PIPE_BOMB.png::CompressedTexture2D::8463227653396684311::1772845119::1773163813::1::::<><><>0<>0<>d66b0ba0125f5f4646c5d011c5b1eb25<>res://.godot/imported/SPRITE_PIPE_BOMB.png-4d184fa0eddb9870a3b7f14a00eed18d.ctex::
 SPRITE_RC_CARBOMB.png::CompressedTexture2D::5275613821022180913::1772845119::1773163813::1::::<><><>0<>0<>9f902cbb23775f2ed851076df516e01a<>res://.godot/imported/SPRITE_RC_CARBOMB.png-feb38a8fb17d9e9a663de70a279ea863.ctex::
 SPRITE_STINKBOMB.png::CompressedTexture2D::4901704032278581739::1772845119::1773163813::1::::<><><>0<>0<>236c68e1ef57f048f855f0129b91c033<>res://.godot/imported/SPRITE_STINKBOMB.png-85c3a15bad76bf14d4697b231d96c283.ctex::
-::res://visual/::1773259397
+::res://visual/::1774014601
 burn.gdshader::Shader::8978819867903045396::1772845120::0::1::::<><><>0<>0<><>::
 CONSOLA.TTF::FontFile::1783269396119387230::1772845120::1772845120::1::::<><><>0<>0<>affcc9d87e0c30eda9339eb88fb42f7a<>res://.godot/imported/CONSOLA.TTF-ee3c84f3d4db91bcc5ca87457472367f.fontdata::
 CONSOLAB.TTF::FontFile::5831992494575899657::1772845120::1772845120::1::::<><><>0<>0<>d74587f47ddb896bc3f336b45f0422a2<>res://.godot/imported/CONSOLAB.TTF-3382edf446c7a7ddfd97cf20bb585df9.fontdata::
@@ -77,6 +80,6 @@ CONSOLAI.TTF::FontFile::891515179448489896::1772845120::1772845120::1::::<><><>0
 CONSOLAZ.TTF::FontFile::3542950044059439825::1772845120::1772845120::1::::<><><>0<>0<>63c9d84311a502371696f67ae5f6434d<>res://.godot/imported/CONSOLAZ.TTF-89d4b568d43b5fff4eb958fc53661375.fontdata::
 new_noise_texture_2d.tres::NoiseTexture2D::2058937299128636623::1772845120::0::1::::<><><>0<>0<><>::
 outline.gdshader::Shader::235435226720593314::1772845120::0::1::::<><><>0<>0<><>::
-theme.tres::Theme::1729628196021530218::1773245667::0::1::::<><><>0<>0<><>::uid://0n3glq4kfawk::::res://visual/CONSOLA.TTF
-value_popup.gd::GDScript::7490030238425034291::1773259397::0::1::::<>Node2D<><>0<>0<><>::
-voronoi.tres::NoiseTexture2D::4505858322356501238::1773245667::0::1::::<><><>0<>0<><>::
+theme.tres::Theme::1729628196021530218::1774014601::0::1::::<><><>0<>0<><>::uid://0n3glq4kfawk::::res://visual/CONSOLA.TTF
+value_popup.gd::GDScript::7490030238425034291::1773605237::0::1::::<>Node2D<><>0<>0<><>::
+voronoi.tres::NoiseTexture2D::4505858322356501238::1774014601::0::1::::<><><>0<>0<><>::
