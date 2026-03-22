@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://db8sc1v3j7sjj" path="res://timer.gd" id="4_ykrsh"]
 [ext_resource type="Script" uid="uid://qm00lx51ifvo" path="res://ui.gd" id="5_ehkex"]
 [ext_resource type="Texture2D" uid="uid://bi4ltin761ryn" path="res://prototype/special.png" id="7_vbegm"]
+[ext_resource type="PackedScene" uid="uid://c6hty38y42g2n" path="res://civilian.tscn" id="9_00tp4"]
 [ext_resource type="Texture2D" uid="uid://2kbmd0cnawfv" path="res://prototype/derelict.png" id="9_xersf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ykrsh"]
@@ -16,6 +17,7 @@ script = ExtResource("1_8uh7m")
 metadata/_edit_lock_ = true
 
 [node name="Map" type="Node2D" parent="." unique_id=199680521]
+z_index = -1
 position = Vector2(32, 32)
 script = ExtResource("1_37kl0")
 metadata/_edit_lock_ = true
@@ -124,5 +126,449 @@ offset_top = 12.0
 offset_right = 1032.0
 offset_bottom = 35.0
 theme_override_constants/outline_size = 8
+
+[node name="Civilian" parent="." unique_id=1593687168 instance=ExtResource("9_00tp4")]
+position = Vector2(659, 359)
+
+[node name="Civilian2" parent="." unique_id=410228836 instance=ExtResource("9_00tp4")]
+position = Vector2(713, 315)
+
+[node name="Civilian3" parent="." unique_id=1330638346 instance=ExtResource("9_00tp4")]
+position = Vector2(644, 292)
+
+[node name="Civilian4" parent="." unique_id=1660610424 instance=ExtResource("9_00tp4")]
+position = Vector2(695, 273)
+
+[node name="Civilian5" parent="." unique_id=513943268 instance=ExtResource("9_00tp4")]
+position = Vector2(666, 312)
+
+[node name="Civilian6" parent="." unique_id=1286549815 instance=ExtResource("9_00tp4")]
+position = Vector2(654, 234)
+
+[node name="Civilian7" parent="." unique_id=1295548033 instance=ExtResource("9_00tp4")]
+position = Vector2(666, 274)
+
+[node name="Civilian8" parent="." unique_id=1692275781 instance=ExtResource("9_00tp4")]
+position = Vector2(681, 249)
+
+[node name="Civilian9" parent="." unique_id=726857690 instance=ExtResource("9_00tp4")]
+position = Vector2(679, 317)
+
+[node name="Civilian10" parent="." unique_id=926685227 instance=ExtResource("9_00tp4")]
+position = Vector2(646, 320)
+
+[node name="Civilian11" parent="." unique_id=1547339842 instance=ExtResource("9_00tp4")]
+position = Vector2(682, 295)
+
+[node name="Civilian12" parent="." unique_id=1984936161 instance=ExtResource("9_00tp4")]
+position = Vector2(644, 257)
+
+[node name="Civilian13" parent="." unique_id=1030412567 instance=ExtResource("9_00tp4")]
+position = Vector2(668, 292)
+
+[node name="Civilian14" parent="." unique_id=898862942 instance=ExtResource("9_00tp4")]
+position = Vector2(675, 256)
+
+[node name="Civilian15" parent="." unique_id=1707077379 instance=ExtResource("9_00tp4")]
+position = Vector2(646, 278)
+
+[node name="Civilian16" parent="." unique_id=1753667057 instance=ExtResource("9_00tp4")]
+position = Vector2(615, 286)
+
+[node name="Civilian17" parent="." unique_id=1161929199 instance=ExtResource("9_00tp4")]
+position = Vector2(637, 319)
+
+[node name="Civilian18" parent="." unique_id=1810554471 instance=ExtResource("9_00tp4")]
+position = Vector2(625, 300)
+
+[node name="Civilian19" parent="." unique_id=1265535892 instance=ExtResource("9_00tp4")]
+position = Vector2(673, 335)
+
+[node name="Civilian20" parent="." unique_id=682923085 instance=ExtResource("9_00tp4")]
+position = Vector2(701, 308)
+
+[node name="Civilian21" parent="." unique_id=444904214 instance=ExtResource("9_00tp4")]
+position = Vector2(712, 290)
+
+[node name="Civilian22" parent="." unique_id=1877974687 instance=ExtResource("9_00tp4")]
+position = Vector2(737, 286)
+
+[node name="Civilian23" parent="." unique_id=2122922969 instance=ExtResource("9_00tp4")]
+position = Vector2(724, 237)
+
+[node name="Civilian24" parent="." unique_id=424530616 instance=ExtResource("9_00tp4")]
+position = Vector2(705, 260)
+
+[node name="Civilian25" parent="." unique_id=224495590 instance=ExtResource("9_00tp4")]
+position = Vector2(693, 239)
+
+[node name="Civilian26" parent="." unique_id=1966699556 instance=ExtResource("9_00tp4")]
+position = Vector2(679, 207)
+
+[node name="Civilian27" parent="." unique_id=1484126815 instance=ExtResource("9_00tp4")]
+position = Vector2(603, 255)
+
+[node name="Civilian28" parent="." unique_id=1251748660 instance=ExtResource("9_00tp4")]
+position = Vector2(629, 244)
+
+[node name="Civilian29" parent="." unique_id=1286749076 instance=ExtResource("9_00tp4")]
+position = Vector2(629, 263)
+
+[node name="Civilian30" parent="." unique_id=1041624540 instance=ExtResource("9_00tp4")]
+position = Vector2(624, 267)
+
+[node name="Civilian31" parent="." unique_id=316661209 instance=ExtResource("9_00tp4")]
+position = Vector2(658, 232)
+
+[node name="Civilian32" parent="." unique_id=1144411225 instance=ExtResource("9_00tp4")]
+position = Vector2(694, 242)
+
+[node name="Civilian33" parent="." unique_id=1695775117 instance=ExtResource("9_00tp4")]
+position = Vector2(720, 252)
+
+[node name="Civilian34" parent="." unique_id=843914153 instance=ExtResource("9_00tp4")]
+position = Vector2(729, 277)
+
+[node name="Civilian35" parent="." unique_id=1482570013 instance=ExtResource("9_00tp4")]
+position = Vector2(727, 306)
+
+[node name="Civilian36" parent="." unique_id=1080094815 instance=ExtResource("9_00tp4")]
+position = Vector2(753, 288)
+
+[node name="Civilian37" parent="." unique_id=1103586744 instance=ExtResource("9_00tp4")]
+position = Vector2(747, 310)
+
+[node name="Civilian38" parent="." unique_id=227713584 instance=ExtResource("9_00tp4")]
+position = Vector2(473, 332)
+
+[node name="Civilian39" parent="." unique_id=466987799 instance=ExtResource("9_00tp4")]
+position = Vector2(527, 288)
+
+[node name="Civilian40" parent="." unique_id=1522067633 instance=ExtResource("9_00tp4")]
+position = Vector2(458, 265)
+
+[node name="Civilian41" parent="." unique_id=485501847 instance=ExtResource("9_00tp4")]
+position = Vector2(509, 246)
+
+[node name="Civilian42" parent="." unique_id=2096444878 instance=ExtResource("9_00tp4")]
+position = Vector2(480, 285)
+
+[node name="Civilian43" parent="." unique_id=1950860589 instance=ExtResource("9_00tp4")]
+position = Vector2(468, 207)
+
+[node name="Civilian44" parent="." unique_id=1908688602 instance=ExtResource("9_00tp4")]
+position = Vector2(480, 247)
+
+[node name="Civilian45" parent="." unique_id=1500850592 instance=ExtResource("9_00tp4")]
+position = Vector2(495, 222)
+
+[node name="Civilian46" parent="." unique_id=773626392 instance=ExtResource("9_00tp4")]
+position = Vector2(493, 290)
+
+[node name="Civilian47" parent="." unique_id=1170902320 instance=ExtResource("9_00tp4")]
+position = Vector2(460, 293)
+
+[node name="Civilian48" parent="." unique_id=116861905 instance=ExtResource("9_00tp4")]
+position = Vector2(496, 268)
+
+[node name="Civilian49" parent="." unique_id=1568346568 instance=ExtResource("9_00tp4")]
+position = Vector2(458, 230)
+
+[node name="Civilian50" parent="." unique_id=2039005123 instance=ExtResource("9_00tp4")]
+position = Vector2(482, 265)
+
+[node name="Civilian51" parent="." unique_id=913386252 instance=ExtResource("9_00tp4")]
+position = Vector2(489, 229)
+
+[node name="Civilian52" parent="." unique_id=1519951805 instance=ExtResource("9_00tp4")]
+position = Vector2(460, 251)
+
+[node name="Civilian53" parent="." unique_id=1125738970 instance=ExtResource("9_00tp4")]
+position = Vector2(429, 259)
+
+[node name="Civilian54" parent="." unique_id=974251169 instance=ExtResource("9_00tp4")]
+position = Vector2(451, 292)
+
+[node name="Civilian55" parent="." unique_id=212024677 instance=ExtResource("9_00tp4")]
+position = Vector2(439, 273)
+
+[node name="Civilian56" parent="." unique_id=878205118 instance=ExtResource("9_00tp4")]
+position = Vector2(487, 308)
+
+[node name="Civilian57" parent="." unique_id=2023326009 instance=ExtResource("9_00tp4")]
+position = Vector2(515, 281)
+
+[node name="Civilian58" parent="." unique_id=1190069385 instance=ExtResource("9_00tp4")]
+position = Vector2(526, 263)
+
+[node name="Civilian59" parent="." unique_id=152361834 instance=ExtResource("9_00tp4")]
+position = Vector2(551, 259)
+
+[node name="Civilian60" parent="." unique_id=1794204573 instance=ExtResource("9_00tp4")]
+position = Vector2(538, 210)
+
+[node name="Civilian61" parent="." unique_id=1020560371 instance=ExtResource("9_00tp4")]
+position = Vector2(519, 233)
+
+[node name="Civilian62" parent="." unique_id=1457734541 instance=ExtResource("9_00tp4")]
+position = Vector2(507, 212)
+
+[node name="Civilian63" parent="." unique_id=1193829671 instance=ExtResource("9_00tp4")]
+position = Vector2(493, 180)
+
+[node name="Civilian64" parent="." unique_id=1175523808 instance=ExtResource("9_00tp4")]
+position = Vector2(417, 228)
+
+[node name="Civilian65" parent="." unique_id=751973744 instance=ExtResource("9_00tp4")]
+position = Vector2(443, 217)
+
+[node name="Civilian66" parent="." unique_id=96984624 instance=ExtResource("9_00tp4")]
+position = Vector2(443, 236)
+
+[node name="Civilian67" parent="." unique_id=908947577 instance=ExtResource("9_00tp4")]
+position = Vector2(438, 240)
+
+[node name="Civilian68" parent="." unique_id=1733486118 instance=ExtResource("9_00tp4")]
+position = Vector2(472, 205)
+
+[node name="Civilian69" parent="." unique_id=732913991 instance=ExtResource("9_00tp4")]
+position = Vector2(508, 215)
+
+[node name="Civilian70" parent="." unique_id=1761489688 instance=ExtResource("9_00tp4")]
+position = Vector2(534, 225)
+
+[node name="Civilian71" parent="." unique_id=1235023707 instance=ExtResource("9_00tp4")]
+position = Vector2(543, 250)
+
+[node name="Civilian72" parent="." unique_id=1753422139 instance=ExtResource("9_00tp4")]
+position = Vector2(541, 279)
+
+[node name="Civilian73" parent="." unique_id=897033427 instance=ExtResource("9_00tp4")]
+position = Vector2(567, 261)
+
+[node name="Civilian74" parent="." unique_id=1658789484 instance=ExtResource("9_00tp4")]
+position = Vector2(561, 283)
+
+[node name="Civilian75" parent="." unique_id=1889037262 instance=ExtResource("9_00tp4")]
+position = Vector2(548, 472)
+
+[node name="Civilian76" parent="." unique_id=1601815808 instance=ExtResource("9_00tp4")]
+position = Vector2(602, 428)
+
+[node name="Civilian77" parent="." unique_id=1350478899 instance=ExtResource("9_00tp4")]
+position = Vector2(533, 405)
+
+[node name="Civilian78" parent="." unique_id=1381019555 instance=ExtResource("9_00tp4")]
+position = Vector2(584, 386)
+
+[node name="Civilian79" parent="." unique_id=1598786256 instance=ExtResource("9_00tp4")]
+position = Vector2(555, 425)
+
+[node name="Civilian80" parent="." unique_id=103221584 instance=ExtResource("9_00tp4")]
+position = Vector2(543, 347)
+
+[node name="Civilian81" parent="." unique_id=1002599688 instance=ExtResource("9_00tp4")]
+position = Vector2(555, 387)
+
+[node name="Civilian82" parent="." unique_id=1496702486 instance=ExtResource("9_00tp4")]
+position = Vector2(570, 362)
+
+[node name="Civilian83" parent="." unique_id=1337337929 instance=ExtResource("9_00tp4")]
+position = Vector2(568, 430)
+
+[node name="Civilian84" parent="." unique_id=352056485 instance=ExtResource("9_00tp4")]
+position = Vector2(535, 433)
+
+[node name="Civilian85" parent="." unique_id=2040267367 instance=ExtResource("9_00tp4")]
+position = Vector2(571, 408)
+
+[node name="Civilian86" parent="." unique_id=1196554609 instance=ExtResource("9_00tp4")]
+position = Vector2(533, 370)
+
+[node name="Civilian87" parent="." unique_id=82237660 instance=ExtResource("9_00tp4")]
+position = Vector2(557, 405)
+
+[node name="Civilian88" parent="." unique_id=1196413427 instance=ExtResource("9_00tp4")]
+position = Vector2(564, 369)
+
+[node name="Civilian89" parent="." unique_id=1731253589 instance=ExtResource("9_00tp4")]
+position = Vector2(535, 391)
+
+[node name="Civilian90" parent="." unique_id=699213905 instance=ExtResource("9_00tp4")]
+position = Vector2(504, 399)
+
+[node name="Civilian91" parent="." unique_id=2112981615 instance=ExtResource("9_00tp4")]
+position = Vector2(526, 432)
+
+[node name="Civilian92" parent="." unique_id=76243754 instance=ExtResource("9_00tp4")]
+position = Vector2(514, 413)
+
+[node name="Civilian93" parent="." unique_id=1852789650 instance=ExtResource("9_00tp4")]
+position = Vector2(562, 448)
+
+[node name="Civilian94" parent="." unique_id=3314817 instance=ExtResource("9_00tp4")]
+position = Vector2(590, 421)
+
+[node name="Civilian95" parent="." unique_id=836222701 instance=ExtResource("9_00tp4")]
+position = Vector2(601, 403)
+
+[node name="Civilian96" parent="." unique_id=1054640550 instance=ExtResource("9_00tp4")]
+position = Vector2(626, 399)
+
+[node name="Civilian97" parent="." unique_id=764369215 instance=ExtResource("9_00tp4")]
+position = Vector2(613, 350)
+
+[node name="Civilian98" parent="." unique_id=657576241 instance=ExtResource("9_00tp4")]
+position = Vector2(594, 373)
+
+[node name="Civilian99" parent="." unique_id=1259407145 instance=ExtResource("9_00tp4")]
+position = Vector2(582, 352)
+
+[node name="Civilian100" parent="." unique_id=325899598 instance=ExtResource("9_00tp4")]
+position = Vector2(568, 320)
+
+[node name="Civilian101" parent="." unique_id=1658737149 instance=ExtResource("9_00tp4")]
+position = Vector2(492, 368)
+
+[node name="Civilian102" parent="." unique_id=2014739928 instance=ExtResource("9_00tp4")]
+position = Vector2(518, 357)
+
+[node name="Civilian103" parent="." unique_id=328178111 instance=ExtResource("9_00tp4")]
+position = Vector2(518, 376)
+
+[node name="Civilian104" parent="." unique_id=2044680063 instance=ExtResource("9_00tp4")]
+position = Vector2(513, 380)
+
+[node name="Civilian105" parent="." unique_id=226550127 instance=ExtResource("9_00tp4")]
+position = Vector2(547, 345)
+
+[node name="Civilian106" parent="." unique_id=999940768 instance=ExtResource("9_00tp4")]
+position = Vector2(583, 355)
+
+[node name="Civilian107" parent="." unique_id=1253131248 instance=ExtResource("9_00tp4")]
+position = Vector2(609, 365)
+
+[node name="Civilian108" parent="." unique_id=457319344 instance=ExtResource("9_00tp4")]
+position = Vector2(618, 390)
+
+[node name="Civilian109" parent="." unique_id=1084540647 instance=ExtResource("9_00tp4")]
+position = Vector2(616, 419)
+
+[node name="Civilian110" parent="." unique_id=288460855 instance=ExtResource("9_00tp4")]
+position = Vector2(642, 401)
+
+[node name="Civilian111" parent="." unique_id=381785531 instance=ExtResource("9_00tp4")]
+position = Vector2(636, 423)
+
+[node name="Civilian112" parent="." unique_id=1779647810 instance=ExtResource("9_00tp4")]
+position = Vector2(586, 231)
+
+[node name="Civilian113" parent="." unique_id=1211134111 instance=ExtResource("9_00tp4")]
+position = Vector2(640, 187)
+
+[node name="Civilian114" parent="." unique_id=280603558 instance=ExtResource("9_00tp4")]
+position = Vector2(571, 164)
+
+[node name="Civilian115" parent="." unique_id=1659986306 instance=ExtResource("9_00tp4")]
+position = Vector2(622, 145)
+
+[node name="Civilian116" parent="." unique_id=1047896376 instance=ExtResource("9_00tp4")]
+position = Vector2(593, 184)
+
+[node name="Civilian117" parent="." unique_id=1066936015 instance=ExtResource("9_00tp4")]
+position = Vector2(581, 106)
+
+[node name="Civilian118" parent="." unique_id=1234206320 instance=ExtResource("9_00tp4")]
+position = Vector2(593, 146)
+
+[node name="Civilian119" parent="." unique_id=189412088 instance=ExtResource("9_00tp4")]
+position = Vector2(608, 121)
+
+[node name="Civilian120" parent="." unique_id=1092789717 instance=ExtResource("9_00tp4")]
+position = Vector2(606, 189)
+
+[node name="Civilian121" parent="." unique_id=1144687178 instance=ExtResource("9_00tp4")]
+position = Vector2(573, 192)
+
+[node name="Civilian122" parent="." unique_id=14766438 instance=ExtResource("9_00tp4")]
+position = Vector2(609, 167)
+
+[node name="Civilian123" parent="." unique_id=1104296179 instance=ExtResource("9_00tp4")]
+position = Vector2(571, 129)
+
+[node name="Civilian124" parent="." unique_id=1951886421 instance=ExtResource("9_00tp4")]
+position = Vector2(595, 164)
+
+[node name="Civilian125" parent="." unique_id=1922032713 instance=ExtResource("9_00tp4")]
+position = Vector2(602, 128)
+
+[node name="Civilian126" parent="." unique_id=932653663 instance=ExtResource("9_00tp4")]
+position = Vector2(573, 150)
+
+[node name="Civilian127" parent="." unique_id=610473497 instance=ExtResource("9_00tp4")]
+position = Vector2(542, 158)
+
+[node name="Civilian128" parent="." unique_id=1033863092 instance=ExtResource("9_00tp4")]
+position = Vector2(564, 191)
+
+[node name="Civilian129" parent="." unique_id=660363275 instance=ExtResource("9_00tp4")]
+position = Vector2(552, 172)
+
+[node name="Civilian130" parent="." unique_id=2091842912 instance=ExtResource("9_00tp4")]
+position = Vector2(600, 207)
+
+[node name="Civilian131" parent="." unique_id=155296593 instance=ExtResource("9_00tp4")]
+position = Vector2(628, 180)
+
+[node name="Civilian132" parent="." unique_id=264183800 instance=ExtResource("9_00tp4")]
+position = Vector2(639, 162)
+
+[node name="Civilian133" parent="." unique_id=1509045009 instance=ExtResource("9_00tp4")]
+position = Vector2(664, 158)
+
+[node name="Civilian134" parent="." unique_id=1028064358 instance=ExtResource("9_00tp4")]
+position = Vector2(651, 109)
+
+[node name="Civilian135" parent="." unique_id=930665437 instance=ExtResource("9_00tp4")]
+position = Vector2(632, 132)
+
+[node name="Civilian136" parent="." unique_id=586002149 instance=ExtResource("9_00tp4")]
+position = Vector2(620, 111)
+
+[node name="Civilian137" parent="." unique_id=263212564 instance=ExtResource("9_00tp4")]
+position = Vector2(606, 79)
+
+[node name="Civilian138" parent="." unique_id=176849543 instance=ExtResource("9_00tp4")]
+position = Vector2(530, 127)
+
+[node name="Civilian139" parent="." unique_id=67774097 instance=ExtResource("9_00tp4")]
+position = Vector2(556, 116)
+
+[node name="Civilian140" parent="." unique_id=1038858972 instance=ExtResource("9_00tp4")]
+position = Vector2(556, 135)
+
+[node name="Civilian141" parent="." unique_id=2028904790 instance=ExtResource("9_00tp4")]
+position = Vector2(551, 139)
+
+[node name="Civilian142" parent="." unique_id=789179579 instance=ExtResource("9_00tp4")]
+position = Vector2(585, 104)
+
+[node name="Civilian143" parent="." unique_id=1872773410 instance=ExtResource("9_00tp4")]
+position = Vector2(621, 114)
+
+[node name="Civilian144" parent="." unique_id=1042215071 instance=ExtResource("9_00tp4")]
+position = Vector2(647, 124)
+
+[node name="Civilian145" parent="." unique_id=2129453293 instance=ExtResource("9_00tp4")]
+position = Vector2(656, 149)
+
+[node name="Civilian146" parent="." unique_id=1152223009 instance=ExtResource("9_00tp4")]
+position = Vector2(654, 178)
+
+[node name="Civilian147" parent="." unique_id=1708873663 instance=ExtResource("9_00tp4")]
+position = Vector2(680, 160)
+
+[node name="Civilian148" parent="." unique_id=283800012 instance=ExtResource("9_00tp4")]
+position = Vector2(674, 182)
 
 [connection signal="timeout" from="BombTick" to="BombManager" method="process_tick"]

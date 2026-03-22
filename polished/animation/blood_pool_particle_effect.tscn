@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://drlt4dkoei0gi"]
+[gd_scene format=3 uid="uid://efsarkg7f8l3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bpuxh"]
 
@@ -7,31 +7,34 @@ _limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_oq2m8"]
+_data = [Vector2(0, 0), 0.0, 6.481109, 0, 0, Vector2(0.37243402, 0.713457), 0.0, 0.0, 0, 0, Vector2(0.7184751, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_xlaia"]
-offsets = PackedFloat32Array(0.3329869, 0.78353477, 1)
+offsets = PackedFloat32Array(0.7809524, 0.94603175, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.52150047, 0.5215001, 0.5215003, 0.5484632, 0, 0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_yyorw"]
 colors = PackedColorArray(0.41376296, 0.41376293, 0.41376293, 1, 1, 1, 1, 1)
 
-[node name="BloodSplatParticleEffect" type="CPUParticles2D" unique_id=2013842467]
-z_index = -1
-emitting = false
-amount = 24
+[node name="BloodPoolParticleEffect" type="CPUParticles2D" unique_id=2013842467]
+amount = 1
 texture = SubResource("CanvasTexture_bpuxh")
-lifetime = 10.0
+lifetime = 20.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.1
-spread = 180.0
+lifetime_randomness = 0.1
 gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 250.0
+radial_accel_min = 1.0
+radial_accel_max = 1.0
 damping_min = 75.0
 damping_max = 100.0
 damping_curve = SubResource("Curve_bpuxh")
 scale_amount_min = 2.0
 scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_oq2m8")
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("Gradient_xlaia")
 color_initial_ramp = SubResource("Gradient_yyorw")

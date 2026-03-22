@@ -11,8 +11,9 @@ colors = PackedColorArray(0.3515629, 0.3515629, 0.35156286, 1, 1, 1, 1, 1)
 
 [node name="ExplosionParticleEffect" type="CPUParticles2D" unique_id=589145813]
 emitting = false
+amount = 12
 texture = SubResource("CanvasTexture_213xq")
-lifetime = 1.5
+lifetime = 1.2
 one_shot = true
 explosiveness = 0.96
 randomness = 0.66
@@ -23,7 +24,10 @@ spread = 15.0
 gravity = Vector2(0, 500)
 initial_velocity_min = 250.0
 initial_velocity_max = 350.0
-scale_amount_min = 8.0
-scale_amount_max = 8.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+damping_max = 100.0
+scale_amount_min = 4.0
+scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_f6nig")
 color_initial_ramp = SubResource("Gradient_213xq")

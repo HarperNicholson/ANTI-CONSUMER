@@ -1,20 +1,14 @@
 
-github fix
+ACTUAL GAME LOOP?
 
-check:
-establish "damage" to buildings, along with civilian count and placeholder value
-value, "height", civilian count should reflect what bombs are doing to that building
-
-make blood + limb explosions
-
-
-finish bomb.gd behaviour funcs
+finish bomb.gd behaviour funcs (stink bomb, RC carbomb, airplane)
+grenade falling animation / placeholder grenade icon
 
 tab to toggle sprite from tactical to ortho (prototype to polished)
 
 car traffic and foot traffic
 
-somehow indicate a place has been evacd?
+somehow indicate a place has been evacd? anarchy symbol?
 
 ~~~~~~~~~~POLISHING:
 little preview bomb sprite that follows around anchor tile and rotations

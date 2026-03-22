@@ -33,13 +33,11 @@ scale = Vector2(1, 0.5)
 texture = SubResource("CanvasTexture_aclks")
 
 [node name="Hat" type="Sprite2D" parent="Head" unique_id=1118180837]
-modulate = Color(0.1325, 0.2914999, 0.53, 1)
 position = Vector2(0, -0.75)
 scale = Vector2(1, 0.5)
 texture = SubResource("CanvasTexture_aclks")
 
 [node name="Pants" type="Sprite2D" parent="." unique_id=695677383]
-modulate = Color(0.15127608, 0.15127608, 0.15127608, 1)
 position = Vector2(0, 0.5)
 texture = SubResource("CanvasTexture_hairy")
 
@@ -56,7 +54,6 @@ texture = SubResource("CanvasTexture_hairy")
 offset = Vector2(0, 0.5)
 
 [node name="Shirt" type="Sprite2D" parent="." unique_id=1143070944]
-modulate = Color(0.13333334, 0.2901961, 0.5294118, 1)
 texture = SubResource("CanvasTexture_hairy")
 
 [node name="ArmR" type="Sprite2D" parent="Shirt" unique_id=1649229205]
